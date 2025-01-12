@@ -1,4 +1,3 @@
-
 # Kanagawa for [tmux](https://github.com/tmux/tmux/wiki)
 
 [Kanagawa-dragon](https://github.com/rebelot/kanagawa.nvim/tree/master) theme for TMUX with silent colors.
@@ -10,8 +9,8 @@ Forked from [dracula/tmux](https://github.com/dracula/tmux).
 ## Install
 To activate the theme add the following line to your `.tmux.conf`.
 
-    set -g @plugin 'gorman-john-m/tmux-kanagawa-dragon'
-For advanced instructions look at [INSTALL.md](https://github.com/gorman-john-m/tmux-kanagawa-dragon/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux).  Just replace all `dracula` occurrences with `kanagawa-dragon`.
+    set -g @plugin 'gormanity/tmux-kanagawa-dragon'
+For advanced instructions look at [INSTALL.md](https://github.com/gormanity/tmux-kanagawa-dragon/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux).  Just replace all `dracula` occurrences with `kanagawa-dragon`.
 
 ## Configuration
 
