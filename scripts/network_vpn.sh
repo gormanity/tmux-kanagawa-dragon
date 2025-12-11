@@ -9,8 +9,8 @@ vpn_function() {
   case $(uname -s) in
   Linux)
     # TODO
-  ;;
-  
+    ;;
+
   Darwin)
     vpn=$(scutil --nc list | grep Connected)
 

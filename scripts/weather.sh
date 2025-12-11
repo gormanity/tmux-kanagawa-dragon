@@ -6,29 +6,26 @@ fahrenheit=$1
 location=$2
 fixedlocation=$3
 
-display_location()
-{
+display_location() {
   if $location && [[ ! -z "$fixedlocation" ]]; then
     echo " $fixedlocation"
   elif $location; then
-    city=$(curl -s https://ipinfo.io/city 2> /dev/null)
-    region=$(curl -s https://ipinfo.io/region 2> /dev/null)
+    city=$(curl -s https://ipinfo.io/city 2>/dev/null)
+    region=$(curl -s https://ipinfo.io/region 2>/dev/null)
     echo " $city, $region"
   else
     echo ''
   fi
 }
 
-fetch_weather_information()
-{
+fetch_weather_information() {
   display_weather=$1
   # it gets the weather condition textual name (%C), and the temperature (%t)
   curl -sL wttr.in/${fixedlocation// /%20}\?format="%C+%t$display_weather"
 }
 
 #get weather display
-display_weather()
-{
+display_weather() {
   if $fahrenheit; then
     display_weather='&u' # for USA system
   else
@@ -37,14 +34,13 @@ display_weather()
   weather_information=$(fetch_weather_information $display_weather)
 
   weather_condition=$(echo $weather_information | rev | cut -d ' ' -f2- | rev) # Sunny, Snow, etc
-  temperature=$(echo $weather_information | rev | cut -d ' ' -f 1 | rev) # +31°C, -3°F, etc
+  temperature=$(echo $weather_information | rev | cut -d ' ' -f 1 | rev)       # +31°C, -3°F, etc
   unicode=$(forecast_unicode $weather_condition)
 
   echo "$unicode ${temperature/+/}" # remove the plus sign to the temperature
 }
 
-forecast_unicode()
-{
+forecast_unicode() {
   weather_condition=$(echo $weather_condition | awk '{print tolower($0)}')
 
   if [[ $weather_condition =~ 'snow' ]]; then
@@ -60,10 +56,9 @@ forecast_unicode()
   fi
 }
 
-main()
-{
+main() {
   # process should be cancelled when session is killed
-  if (echo > /dev/tcp/ipinfo.io/443) >/dev/null 2>&1; then
+  if (echo >/dev/tcp/ipinfo.io/443) >/dev/null 2>&1; then
     echo "$(display_weather)$(display_location)"
   else
     echo "Location Unavailable"

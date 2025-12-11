@@ -35,33 +35,33 @@ file_mtime() {
     return
   fi
   case $(uname -s) in
-    Linux|Darwin)
-      date -r "$1" +%s
-      ;;
+  Linux | Darwin)
+    date -r "$1" +%s
+    ;;
 
-    FreeBSD)
-      stat -f %m "$1"
-      ;;
+  FreeBSD)
+    stat -f %m "$1"
+    ;;
 
-    CYGWIN*|MINGW32*|MSYS*|MINGW*)
-      # TODO - windows compatability
-      ;;
+  CYGWIN* | MINGW32* | MSYS* | MINGW*)
+    # TODO - windows compatability
+    ;;
   esac
 }
 
 timestamp_date() {
   case $(uname -s) in
-    Linux)
-      date -d "@$1" "$2"
-      ;;
+  Linux)
+    date -d "@$1" "$2"
+    ;;
 
-    Darwin|FreeBSD)
-      date -r "$1" "$2"
-      ;;
+  Darwin | FreeBSD)
+    date -r "$1" "$2"
+    ;;
 
-    CYGWIN*|MINGW32*|MSYS*|MINGW*)
-      # TODO - windows compatability
-      ;;
+  CYGWIN* | MINGW32* | MSYS* | MINGW*)
+    # TODO - windows compatability
+    ;;
   esac
 }
 
@@ -135,21 +135,21 @@ print_status() {
       status="saved"
     else
       case "$mode" in
-        countdown)
-          status="T$(printf '%+d' "$((time_delta_minutes - save_int))")min";
-          ;;
+      countdown)
+        status="T$(printf '%+d' "$((time_delta_minutes - save_int))")min"
+        ;;
 
-        time)
-          status="$time_delta_minutes";
-          ;;
+      time)
+        status="$time_delta_minutes"
+        ;;
 
-        alert)
-          status=""
-          ;;
+      alert)
+        status=""
+        ;;
 
-        interval)
-          status="$save_int"
-          ;;
+      interval)
+        status="$save_int"
+        ;;
       esac
     fi
   else

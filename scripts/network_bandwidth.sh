@@ -58,15 +58,15 @@ get_bandwidth() {
   local upload=0
   local download=0
 
-  IFS=' ' read -r upload download <<< "$(interface_bytes "$1")"
+  IFS=' ' read -r upload download <<<"$(interface_bytes "$1")"
 
   # wait for interval to calculate the difference
   sleep "$INTERVAL"
 
-  IFS=' ' read -r new_upload new_download <<< "$(interface_bytes "$1")"
+  IFS=' ' read -r new_upload new_download <<<"$(interface_bytes "$1")"
 
-  upload=$(( $new_upload - $upload ))
-  download=$(( $new_download - $download ))
+  upload=$(($new_upload - $upload))
+  download=$(($new_download - $download))
 
   # set to 0 by default
   echo "${upload:-0} ${download:-0}"

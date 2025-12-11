@@ -3,8 +3,8 @@
 current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 color_name hex_value"
-    exit 1
+  echo "Usage: $0 color_name hex_value"
+  exit 1
 fi
 
 color_name="$1"
@@ -14,30 +14,29 @@ colors_file=$current_dir/colors.sh
 
 # Validate color name is in snake_case for consistency
 if ! [[ $color_name =~ ^[a-z0-9]+(_[a-z0-9]+)*$ ]]; then
-    echo "Error: Color name must be in snake_case."
-    exit 4
+  echo "Error: Color name must be in snake_case."
+  exit 4
 fi
 
 # Validate hex value is a valid hex color
 if ! [[ $hex_value =~ ^#[0-9a-fA-F]{6}$ ]]; then
-    echo "Error: Hex value must start with '#' followed by exactly 6 hexadecimal characters."
-    exit 5
+  echo "Error: Hex value must start with '#' followed by exactly 6 hexadecimal characters."
+  exit 5
 fi
 
 # Check if the color name already exists in the file
 if grep -q "^${color_name}=" "$colors_file"; then
-    echo "The color name $color_name already exists in $colors_file."
-    exit 2
+  echo "The color name $color_name already exists in $colors_file."
+  exit 2
 fi
 
 # Check if the hex value already exists in the file, regardless of color name
 if grep -q "='${hex_value}'$" "$colors_file"; then
-    echo "The hex value $hex_value already exists in $colors_file under a different color name."
-    exit 3
+  echo "The hex value $hex_value already exists in $colors_file under a different color name."
+  exit 3
 fi
 
-
-echo -e "\t${color_name}='${hex_value}'" >> "${colors_file}"
+echo -e "\t${color_name}='${hex_value}'" >>"${colors_file}"
 
 svg_content="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>
 <!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">
@@ -48,8 +47,6 @@ svg_content="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>
 assets_dir=$current_dir/../assets/colors
 svg_file="${assets_dir}/${color_name}.svg"
 
-echo "${svg_content}" > "${svg_file}"
+echo "${svg_content}" >"${svg_file}"
 
 echo "Color ${color_name} with hex value ${hex_value} added successfully."
-
-

@@ -35,4 +35,3 @@ reset_state() {
   rm "$STATE_FILE"
   touch "$STATE_FILE"
 }
-

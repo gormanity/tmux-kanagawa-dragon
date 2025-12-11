@@ -20,8 +20,8 @@ main() {
   RATE=$(get_tmux_option "@kanagawa-refresh-rate" 5)
   clients_count=$(count_clients)
   clients_minimum=$(get_tmux_option "@kanagawa-clients-minimum" 1)
-  if (( $clients_count >= $clients_minimum )); then
-    if (( $clients_count > 1 )); then
+  if (($clients_count >= $clients_minimum)); then
+    if (($clients_count > 1)); then
       clients_label=$(get_tmux_option "@kanagawa-clients-plural" "clients")
     else
       clients_label=$(get_tmux_option "@kanagawa-clients-singular" "client")
