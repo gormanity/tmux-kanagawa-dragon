@@ -27,14 +27,14 @@ main() {
   fixed_location=$(get_tmux_option "@kanagawa-fixed-location")
   show_powerline=$(get_tmux_option "@kanagawa-show-powerline" false)
   show_flags=$(get_tmux_option "@kanagawa-show-flags" false)
-  status_bg=$(get_tmux_option "@kanagawa-status-bg" gray)
+  status_bg=$(get_tmux_option "@kanagawa-status-bg" bg_bar)
 
   # left icon area
   left_icon=$(get_tmux_option "@kanagawa-left-icon" session)
-  left_icon_bg=$(get_tmux_option "@kanagawa-left-icon-bg" green)
-  left_icon_fg=$(get_tmux_option "@kanagawa-left-icon-fg" dark_gray)
-  left_icon_prefix_bg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-bg" yellow)
-  left_icon_prefix_fg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-fg" dark_gray)
+  left_icon_bg=$(get_tmux_option "@kanagawa-left-icon-bg" accent)
+  left_icon_fg=$(get_tmux_option "@kanagawa-left-icon-fg" bg_pane)
+  left_icon_prefix_bg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-bg" alert)
+  left_icon_prefix_fg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-fg" bg_pane)
   left_icon_padding_left=$(get_tmux_option "@kanagawa-left-icon-padding-left" 1)
   left_icon_padding_right=$(get_tmux_option "@kanagawa-left-icon-padding-right" 1)
   left_icon_margin_right=$(get_tmux_option "@kanagawa-left-icon-margin-right" 1)
@@ -120,8 +120,8 @@ main() {
     current_flags=""
     ;;
   true)
-    flags="#{?window_flags,#[fg=${dark_purple}]#{window_flags},}"
-    current_flags="#{?window_flags,#[fg=${light_purple}]#{window_flags},}"
+    flags="#{?window_flags,#[fg=${selection}]#{window_flags},}"
+    current_flags="#{?window_flags,#[fg=${highlight}]#{window_flags},}"
     ;;
   esac
 
@@ -141,17 +141,17 @@ main() {
 
   # pane border styling
   if $show_border_contrast; then
-    tmux set-option -g pane-active-border-style "fg=${light_purple}"
+    tmux set-option -g pane-active-border-style "fg=${highlight}"
   else
-    tmux set-option -g pane-active-border-style "fg=${dark_purple}"
+    tmux set-option -g pane-active-border-style "fg=${selection}"
   fi
-  tmux set-option -g pane-border-style "fg=${gray}"
+  tmux set-option -g pane-border-style "fg=${bg_bar}"
 
   # message styling
-  tmux set-option -g message-style "bg=${gray},fg=${white}"
+  tmux set-option -g message-style "bg=${bg_bar},fg=${text}"
 
   # status bar
-  tmux set-option -g status-style "bg=${!status_bg},fg=${white}"
+  tmux set-option -g status-style "bg=${!status_bg},fg=${text}"
 
   # Handle left icon margin
   icon_mg_r=""
@@ -167,113 +167,113 @@ main() {
     if case $plugin in custom:*) true ;; *) false ;; esac then
       script=${plugin#"custom:"}
       if [[ -x "${current_dir}/${script}" ]]; then
-        IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-custom-plugin-colors" "cyan dark_gray")
+        IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-custom-plugin-colors" "info bg_pane")
         script="#($current_dir/${script})"
       else
-        colors[0]="red"
-        colors[1]="dark_gray"
+        colors[0]="error"
+        colors[1]="bg_pane"
         script="${script} not found!"
       fi
 
     elif [ $plugin = "cwd" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cwd-colors" "dark_gray white")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cwd-colors" "bg_pane text")
       tmux set-option -g status-right-length 250
       script="#($current_dir/cwd.sh)"
 
     elif [ $plugin = "fossil" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-fossil-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-fossil-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/fossil.sh)"
 
     elif [ $plugin = "git" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-git-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-git-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/git.sh)"
 
     elif [ $plugin = "hg" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-hg-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-hg-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/hg.sh)"
 
     elif [ $plugin = "battery" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-battery-colors" "pink dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-battery-colors" "muted bg_pane")
       script="#($current_dir/battery.sh)"
 
     elif [ $plugin = "gpu-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-usage-colors" "pink dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-usage-colors" "muted bg_pane")
       script="#($current_dir/gpu_usage.sh)"
 
     elif [ $plugin = "gpu-ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-ram-usage-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-ram-usage-colors" "info bg_pane")
       script="#($current_dir/gpu_ram_info.sh)"
 
     elif [ $plugin = "gpu-power-draw" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-power-draw-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-power-draw-colors" "accent bg_pane")
       script="#($current_dir/gpu_power.sh)"
 
     elif [ $plugin = "cpu-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cpu-usage-colors" "orange dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cpu-usage-colors" "notice bg_pane")
       script="#($current_dir/cpu_info.sh)"
 
     elif [ $plugin = "ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ram-usage-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ram-usage-colors" "info bg_pane")
       script="#($current_dir/ram_info.sh)"
 
     elif [ $plugin = "tmux-ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-tmux-ram-usage-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-tmux-ram-usage-colors" "info bg_pane")
       script="#($current_dir/tmux_ram_info.sh)"
 
     elif [ $plugin = "network" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-colors" "info bg_pane")
       script="#($current_dir/network.sh)"
 
     elif [ $plugin = "network-bandwidth" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-bandwidth-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-bandwidth-colors" "info bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/network_bandwidth.sh)"
 
     elif [ $plugin = "network-ping" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-ping-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-ping-colors" "info bg_pane")
       script="#($current_dir/network_ping.sh)"
 
     elif [ $plugin = "network-vpn" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-vpn-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-vpn-colors" "info bg_pane")
       script="#($current_dir/network_vpn.sh)"
 
     elif [ $plugin = "attached-clients" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-attached-clients-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-attached-clients-colors" "info bg_pane")
       script="#($current_dir/attached_clients.sh)"
 
     elif [ $plugin = "mpc" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-mpc-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-mpc-colors" "accent bg_pane")
       script="#($current_dir/mpc.sh)"
 
     elif [ $plugin = "spotify-tui" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-spotify-tui-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-spotify-tui-colors" "accent bg_pane")
       script="#($current_dir/spotify-tui.sh)"
 
     elif [ $plugin = "playerctl" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-playerctl-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-playerctl-colors" "accent bg_pane")
       script="#($current_dir/playerctl.sh)"
 
     elif [ $plugin = "kubernetes-context" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-kubernetes-context-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-kubernetes-context-colors" "info bg_pane")
       script="#($current_dir/kubernetes_context.sh $eks_hide_arn $eks_extract_account $hide_kubernetes_user $show_kubernetes_context_label)"
 
     elif [ $plugin = "terraform" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-terraform-colors" "light_purple dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-terraform-colors" "highlight bg_pane")
       script="#($current_dir/terraform.sh $terraform_label)"
 
     elif [ $plugin = "continuum" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-continuum-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-continuum-colors" "info bg_pane")
       script="#($current_dir/continuum.sh)"
 
     elif [ $plugin = "weather" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-weather-colors" "orange dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-weather-colors" "notice bg_pane")
       script="#($current_dir/weather_wrapper.sh $show_fahrenheit $show_location '$fixed_location')"
 
     elif [ $plugin = "time" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-time-colors" "dark_purple white")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-time-colors" "selection text")
       if [ -n "$time_format" ]; then
         script=${time_format}
       else
@@ -288,11 +288,11 @@ main() {
         fi
       fi
     elif [ $plugin = "synchronize-panes" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-synchronize-panes-colors" "cyan dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-synchronize-panes-colors" "info bg_pane")
       script="#($current_dir/synchronize_panes.sh $show_synchronize_panes_label)"
 
     elif [ $plugin = "ssh-session" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ssh-session-colors" "green dark_gray")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ssh-session-colors" "accent bg_pane")
       script="#($current_dir/ssh_session.sh $show_ssh_session_port)"
 
     else
@@ -317,16 +317,16 @@ main() {
 
   # Window option
   if $show_powerline; then
-    tmux set-window-option -g window-status-current-format "#[fg=${gray},bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W${current_flags} #[fg=${dark_purple},bg=${gray}]${left_sep}"
+    tmux set-window-option -g window-status-current-format "#[fg=${bg_bar},bg=${selection}]${left_sep}#[fg=${text},bg=${selection}] #I #W${current_flags} #[fg=${selection},bg=${bg_bar}]${left_sep}"
   else
-    tmux set-window-option -g window-status-current-format "#[fg=${white},bg=${dark_purple}] #I #W${current_flags} "
+    tmux set-window-option -g window-status-current-format "#[fg=${text},bg=${selection}] #I #W${current_flags} "
   fi
 
   if ! $ignore_window_colors; then
-    tmux set-window-option -g window-style "fg=${white},bg=${dark_gray}"
+    tmux set-window-option -g window-style "fg=${text},bg=${bg_pane}"
   fi
 
-  tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=${gray}] #I #W${flags}"
+  tmux set-window-option -g window-status-format "#[fg=${text}]#[bg=${bg_bar}] #I #W${flags}"
   tmux set-window-option -g window-status-activity-style "bold"
   tmux set-window-option -g window-status-bell-style "bold"
 }

@@ -58,10 +58,28 @@ set -g @kanagawa-plugins "cpu-usage gpu-usage ram-usage"
 For each plugin is possible to customize background and foreground colors
 
 ```bash
-# available colors: white, gray, dark_gray, light_purple, dark_purple, cyan, green, orange, red, pink, yellow
+# Semantic colors (recommended):
+#   text, bg_bar, bg_pane, highlight, selection, info, accent, notice, error, muted, alert
+# Legacy colors (still supported):
+#   white, gray, dark_gray, light_purple, dark_purple, cyan, green, orange, red, pink, yellow
 # set -g @kanagawa-[plugin-name]-colors "[background] [foreground]"
-set -g @kanagawa-cpu-usage-colors "pink dark_gray"
+set -g @kanagawa-cpu-usage-colors "muted bg_pane"
 ```
+
+**Semantic Color Roles:**
+| Color | Role |
+|-------|------|
+| `text` | Primary text/foreground |
+| `bg_bar` | Status bar background |
+| `bg_pane` | Window/pane background |
+| `highlight` | Active element highlight |
+| `selection` | Selected/focused element |
+| `info` | Informational status (network, system) |
+| `accent` | Primary accent (VCS, success states) |
+| `notice` | Performance/attention (CPU, weather) |
+| `error` | Error states |
+| `muted` | Secondary status (battery, GPU) |
+| `alert` | Prefix/alert active state |
 
 #### Status bar options
 

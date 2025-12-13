@@ -37,10 +37,27 @@ Interactive tmux menus accessible via `prefix + T`:
 
 Colors are defined in `scripts/colors.sh` using Kanagawa naming conventions (e.g., `fuji_white`, `sumi_ink_4`, `spring_green`).
 
-`scripts/theme.sh` maps these to semantic names (`white`, `gray`, `dark_gray`, `cyan`, `green`, etc.) based on the selected theme variant:
+`scripts/theme.sh` maps these to role-based semantic names based on the selected theme variant:
 - **wave** (default) - Dark theme
 - **dragon** - Darker variant
 - **lotus** - Light theme
+
+### Semantic Color Names
+| Name | Role |
+|------|------|
+| `text` | Primary text/foreground |
+| `bg_bar` | Status bar background |
+| `bg_pane` | Window/pane background |
+| `highlight` | Active element highlight |
+| `selection` | Selected/focused element |
+| `info` | Informational status (network, system) |
+| `accent` | Primary accent (VCS, success states) |
+| `notice` | Performance/attention (CPU, weather) |
+| `error` | Error states |
+| `muted` | Secondary status (battery, GPU) |
+| `alert` | Prefix/alert active state |
+
+Legacy color names (`white`, `gray`, `dark_gray`, `light_purple`, `dark_purple`, `cyan`, `green`, `orange`, `red`, `pink`, `yellow`) are aliased for backward compatibility.
 
 ## Configuration Pattern
 
@@ -60,7 +77,7 @@ set -g @kanagawa-[plugin-name]-colors "[background] [foreground]"
 2. Add handling in `scripts/kanagawa.sh` in the plugin loop:
    ```bash
    elif [ $plugin = "your-plugin" ]; then
-     IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-your-plugin-colors" "cyan dark_gray")
+     IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-your-plugin-colors" "info bg_pane")
      script="#($current_dir/your_plugin.sh)"
    ```
 
