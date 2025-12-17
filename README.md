@@ -38,6 +38,40 @@ set -g @kanagawa-ignore-window-colors true
 **Lotus Theme**
 ![Lotus Theme](./assets/themes/lotus.png)
 
+### Custom Colors
+
+Override any semantic color via `@kanagawa-color-<name>`. Accepts hex values or color variable names from the palette.
+
+```bash
+# Override with hex colors
+set -g @kanagawa-color-accent "#00ff00"
+set -g @kanagawa-color-bg-bar "#1a1a2e"
+
+# Or use palette color names
+set -g @kanagawa-color-accent "spring_green"
+set -g @kanagawa-color-alert "samurai_red"
+
+# Mix theme colors (e.g., use dragon colors in wave theme)
+set -g @kanagawa-theme "wave"
+set -g @kanagawa-color-bg-bar "dragon_black_4"
+```
+
+**Available semantic colors:**
+
+| Name | Role |
+|------|------|
+| `text` | Primary text/foreground |
+| `bg-bar` | Status bar background |
+| `bg-pane` | Window/pane background |
+| `highlight` | Active element highlight |
+| `selection` | Selected/focused element |
+| `info` | Informational status |
+| `accent` | Primary accent (VCS, success) |
+| `notice` | Attention items (CPU, weather) |
+| `error` | Error states |
+| `muted` | Secondary status (battery) |
+| `alert` | Prefix/alert active state |
+
 The Kanagawa theme for tmux also supports an extended list of colors from the Kaganawa color palette. Below, you'll find a detailed list of these extra colors available.
 
 <details>
@@ -140,10 +174,6 @@ It is possible that not all color values are listed here. For the complete list,
 - Current kubernetes context
 - Countdown to tmux-continuum save
 - Current working directory of tmux pane
-
-## Todo
-
-- [ ] meaningful / semantic color names
 
 ## Compatibility
 

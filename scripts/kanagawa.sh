@@ -15,6 +15,7 @@ main() {
   ignore_window_colors=$(get_tmux_option "@kanagawa-ignore-window-colors" false)
 
   set_theme $theme
+  override_theme_colors
 
   # set configuration option variables
   show_kubernetes_context_label=$(get_tmux_option "@kanagawa-kubernetes-context-label" "")
