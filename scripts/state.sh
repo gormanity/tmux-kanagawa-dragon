@@ -21,7 +21,7 @@ write_option_to_state() {
   local option=$1
   local value=$2
   if grep -q "^$option" "$STATE_FILE"; then
-    sed -i "" "s/^$option.*/$option $value/" "$STATE_FILE"
+    sed -i "" "s|^$option.*|$option $value|" "$STATE_FILE"
   else
     echo "$option $value" >>"$STATE_FILE"
   fi

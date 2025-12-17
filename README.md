@@ -1,6 +1,6 @@
 # Kanagawa for [tmux](https://github.com/tmux/tmux/wiki)
 
-[Kanagawa](https://github.com/rebelot/kanagawa.nvim/tree/master) theme for TMUX with silent colors.
+Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim) and [Tokyo Night](https://github.com/folke/tokyonight.nvim) color schemes.
 
 Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
@@ -19,24 +19,48 @@ For advanced instructions look at [INSTALL.md](https://github.com/Nybkox/tmux-ka
 Configuration and options can be found at [draculatheme.com/tmux](https://draculatheme.com/tmux).
 Just replace all `dracula` occurrences with `kanagawa`.
 
-To set the theme flavor (`wave` (default), `lotus` or `dragon`) you can press prefix+T or add the following line to your `.tmux.conf`. Otherwise, the base theme will be set.
+Select a theme using `@kanagawa-theme` with format `theme/variant`. Press prefix+T for interactive menu.
 
-```
-set -g @kanagawa-theme '<theme>'
+```bash
+# Kanagawa variants
+set -g @kanagawa-theme "kanagawa/wave"    # default dark
+set -g @kanagawa-theme "kanagawa/dragon"  # darker
+set -g @kanagawa-theme "kanagawa/lotus"   # light
+
+# Tokyo Night variants
+set -g @kanagawa-theme "tokyonight/moon"   # default
+set -g @kanagawa-theme "tokyonight/storm"
+set -g @kanagawa-theme "tokyonight/night"  # darker
+
+# Legacy format still works
+set -g @kanagawa-theme "wave"  # same as kanagawa/wave
 ```
 
 If you want to preserve your emulator background / foreground for window:
 
-```
+```bash
 set -g @kanagawa-ignore-window-colors true
 ```
 
-**Kanagawa Theme**
-![Default Theme](./assets/themes/default.png)
-**Dragon Theme**
-![Dragon Theme](./assets/themes/dragon.png)
-**Lotus Theme**
-![Lotus Theme](./assets/themes/lotus.png)
+### Kanagawa
+
+| Variant | Description |
+|---------|-------------|
+| wave | Default dark theme |
+| dragon | Darker variant |
+| lotus | Light theme |
+
+**Wave** ![Default Theme](./assets/themes/default.png)
+**Dragon** ![Dragon Theme](./assets/themes/dragon.png)
+**Lotus** ![Lotus Theme](./assets/themes/lotus.png)
+
+### Tokyo Night
+
+| Variant | Description |
+|---------|-------------|
+| moon | Default, softer colors |
+| storm | Original dark theme |
+| night | Darker backgrounds |
 
 ### Custom Colors
 
@@ -144,7 +168,7 @@ The Kanagawa theme for tmux also supports an extended list of colors from the Ka
 
 </details><br>
 
-It is possible that not all color values are listed here. For the complete list, refer to [colors](./scripts/colors.sh).
+For complete color lists, see [themes/kanagawa/palette.sh](./themes/kanagawa/palette.sh) and [themes/tokyonight/palette.sh](./themes/tokyonight/palette.sh).
 
 ## Features
 

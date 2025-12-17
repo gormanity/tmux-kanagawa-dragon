@@ -5,33 +5,50 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 
 source "$ROOT_DIR/scripts/utils.sh"
 
+mark_if_active() {
+  local current=$1
+  local check=$2
+  local label=$3
+  if [ "$current" = "$check" ]; then
+    echo "${label}*"
+  else
+    echo "$label"
+  fi
+}
+
 render() {
-  local theme=$(get_tmux_option "@kanagawa-theme" "wave")
+  local current_theme=$(get_tmux_option "@kanagawa-theme" "wave")
 
-  local wave_title="Wave"
-  local dragon_title="Dragon"
-  local lotus_title="Lotus"
-
-  case $theme in
-  wave)
-    wave_title="Wave*"
-    ;;
-  dragon)
-    dragon_title="Dragon*"
-    ;;
-  lotus)
-    lotus_title="Lotus*"
-    ;;
+  # Normalize legacy values
+  case "$current_theme" in
+    wave|dragon|lotus)
+      current_theme="kanagawa/$current_theme"
+      ;;
   esac
 
-  tmux display-menu -T "#[align=centre fg=green]Colors" -x R -y P \
+  # Kanagawa variants
+  local k_wave=$(mark_if_active "$current_theme" "kanagawa/wave" "Wave")
+  local k_dragon=$(mark_if_active "$current_theme" "kanagawa/dragon" "Dragon")
+  local k_lotus=$(mark_if_active "$current_theme" "kanagawa/lotus" "Lotus")
+
+  # Tokyo Night variants
+  local t_moon=$(mark_if_active "$current_theme" "tokyonight/moon" "Moon")
+  local t_storm=$(mark_if_active "$current_theme" "tokyonight/storm" "Storm")
+  local t_night=$(mark_if_active "$current_theme" "tokyonight/night" "Night")
+
+  tmux display-menu -T "#[align=centre fg=green]Themes" -x R -y P \
     "" \
+    "#[align=centre]─── Kanagawa ───" "" "" \
+    "$k_wave" 1 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/wave'" \
+    "$k_dragon" 2 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/dragon'" \
+    "$k_lotus" 3 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/lotus'" \
     "" \
-    "$wave_title" 1 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme wave" \
-    "$dragon_title" 2 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme dragon" \
-    "$lotus_title" 3 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme lotus" \
+    "#[align=centre]─── Tokyo Night ───" "" "" \
+    "$t_moon" 4 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/moon'" \
+    "$t_storm" 5 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/storm'" \
+    "$t_night" 6 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/night'" \
     "" \
-    "<-- Back" b "run -b 'source #{@kanagawa-root}/menu_items/main.sh" \
+    "<-- Back" b "run -b 'source #{@kanagawa-root}/menu_items/main.sh'" \
     "Close menu" q ""
 }
 

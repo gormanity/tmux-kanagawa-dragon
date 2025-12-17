@@ -4,17 +4,40 @@ export LC_ALL=en_US.UTF-8
 
 current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $current_dir/utils.sh
-source $current_dir/colors.sh
+source $current_dir/../themes/loader.sh
 source $current_dir/theme.sh
 
 main() {
   tmux bind-key -r T run-shell "#{@kanagawa-root}/menu_items/main.sh"
 
   # set theme
-  theme=$(get_tmux_option "@kanagawa-theme" "")
+  theme_option=$(get_tmux_option "@kanagawa-theme" "")
   ignore_window_colors=$(get_tmux_option "@kanagawa-ignore-window-colors" false)
 
-  set_theme $theme
+  # Parse theme/variant format (e.g., "tokyonight/storm")
+  if [[ "$theme_option" == */* ]]; then
+    theme="${theme_option%/*}"
+    variant="${theme_option#*/}"
+  elif [ -n "$theme_option" ]; then
+    # Check if it's a known variant of kanagawa (backward compat)
+    case "$theme_option" in
+      wave|dragon|lotus)
+        theme="kanagawa"
+        variant="$theme_option"
+        ;;
+      *)
+        # Assume it's a theme name, use default variant
+        theme="$theme_option"
+        variant=$(get_default_variant "$theme")
+        ;;
+    esac
+  else
+    # Default to kanagawa/wave
+    theme="kanagawa"
+    variant="wave"
+  fi
+
+  load_theme "$theme" "$variant"
   override_theme_colors
 
   # set configuration option variables
