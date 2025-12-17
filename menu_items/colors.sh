@@ -36,6 +36,12 @@ render() {
   local t_storm=$(mark_if_active "$current_theme" "tokyonight/storm" "Storm")
   local t_night=$(mark_if_active "$current_theme" "tokyonight/night" "Night")
 
+  # Catppuccin variants
+  local c_mocha=$(mark_if_active "$current_theme" "catppuccin/mocha" "Mocha")
+  local c_macchiato=$(mark_if_active "$current_theme" "catppuccin/macchiato" "Macchiato")
+  local c_frappe=$(mark_if_active "$current_theme" "catppuccin/frappe" "Frappé")
+  local c_latte=$(mark_if_active "$current_theme" "catppuccin/latte" "Latte")
+
   tmux display-menu -T "#[align=centre fg=green]Themes" -x R -y P \
     "" \
     "#[align=centre]─── Kanagawa ───" "" "" \
@@ -47,6 +53,12 @@ render() {
     "$t_moon" 4 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/moon'" \
     "$t_storm" 5 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/storm'" \
     "$t_night" 6 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/night'" \
+    "" \
+    "#[align=centre]─── Catppuccin ───" "" "" \
+    "$c_mocha" 7 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/mocha'" \
+    "$c_macchiato" 8 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/macchiato'" \
+    "$c_frappe" 9 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/frappe'" \
+    "$c_latte" 0 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/latte'" \
     "" \
     "<-- Back" b "run -b 'source #{@kanagawa-root}/menu_items/main.sh'" \
     "Close menu" q ""

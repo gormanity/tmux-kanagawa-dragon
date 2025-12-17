@@ -32,6 +32,7 @@ get_default_variant() {
   case $theme_name in
     kanagawa) echo "wave" ;;
     tokyonight) echo "moon" ;;
+    catppuccin) echo "mocha" ;;
     *) echo "default" ;;
   esac
 }
