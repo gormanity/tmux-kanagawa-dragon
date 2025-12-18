@@ -77,7 +77,7 @@ get_ratio() {
 }
 
 main() {
-  ram_label=$(get_tmux_option "@kanagawa-ram-usage-label" "RAM")
+  ram_label=$(get_tmux_option "@ukiyo-ram-usage-label" "RAM")
   ram_ratio=$(get_ratio)
   echo "$ram_label $ram_ratio"
 }

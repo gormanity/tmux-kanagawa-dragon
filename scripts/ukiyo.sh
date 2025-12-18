@@ -7,12 +7,15 @@ source $current_dir/utils.sh
 source $current_dir/../themes/loader.sh
 source $current_dir/theme.sh
 
+# Migrate legacy @ukiyo-* options to @ukiyo-*
+migrate_legacy_options
+
 main() {
-  tmux bind-key -r T run-shell "#{@kanagawa-root}/menu_items/main.sh"
+  tmux bind-key -r T run-shell "#{@ukiyo-root}/menu_items/main.sh"
 
   # set theme
-  theme_option=$(get_tmux_option "@kanagawa-theme" "")
-  ignore_window_colors=$(get_tmux_option "@kanagawa-ignore-window-colors" false)
+  theme_option=$(get_tmux_option "@ukiyo-theme" "")
+  ignore_window_colors=$(get_tmux_option "@ukiyo-ignore-window-colors" false)
 
   # Parse theme/variant format (e.g., "tokyonight/storm")
   if [[ "$theme_option" == */* ]]; then
@@ -41,41 +44,41 @@ main() {
   override_theme_colors
 
   # set configuration option variables
-  show_kubernetes_context_label=$(get_tmux_option "@kanagawa-kubernetes-context-label" "")
-  eks_hide_arn=$(get_tmux_option "@kanagawa-kubernetes-eks-hide-arn" false)
-  eks_extract_account=$(get_tmux_option "@kanagawa-kubernetes-eks-extract-account" false)
-  hide_kubernetes_user=$(get_tmux_option "@kanagawa-kubernetes-hide-user" false)
-  terraform_label=$(get_tmux_option "@kanagawa-terraform-label" "")
-  show_fahrenheit=$(get_tmux_option "@kanagawa-show-fahrenheit" false)
-  show_location=$(get_tmux_option "@kanagawa-show-location" true)
-  fixed_location=$(get_tmux_option "@kanagawa-fixed-location")
-  show_powerline=$(get_tmux_option "@kanagawa-show-powerline" false)
-  show_flags=$(get_tmux_option "@kanagawa-show-flags" false)
-  status_bg=$(get_tmux_option "@kanagawa-status-bg" bg_bar)
+  show_kubernetes_context_label=$(get_tmux_option "@ukiyo-kubernetes-context-label" "")
+  eks_hide_arn=$(get_tmux_option "@ukiyo-kubernetes-eks-hide-arn" false)
+  eks_extract_account=$(get_tmux_option "@ukiyo-kubernetes-eks-extract-account" false)
+  hide_kubernetes_user=$(get_tmux_option "@ukiyo-kubernetes-hide-user" false)
+  terraform_label=$(get_tmux_option "@ukiyo-terraform-label" "")
+  show_fahrenheit=$(get_tmux_option "@ukiyo-show-fahrenheit" false)
+  show_location=$(get_tmux_option "@ukiyo-show-location" true)
+  fixed_location=$(get_tmux_option "@ukiyo-fixed-location")
+  show_powerline=$(get_tmux_option "@ukiyo-show-powerline" false)
+  show_flags=$(get_tmux_option "@ukiyo-show-flags" false)
+  status_bg=$(get_tmux_option "@ukiyo-status-bg" bg_bar)
 
   # left icon area
-  left_icon=$(get_tmux_option "@kanagawa-left-icon" session)
-  left_icon_bg=$(get_tmux_option "@kanagawa-left-icon-bg" accent)
-  left_icon_fg=$(get_tmux_option "@kanagawa-left-icon-fg" bg_pane)
-  left_icon_prefix_bg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-bg" alert)
-  left_icon_prefix_fg=$(get_tmux_option "@kanagawa-left-icon-prefix-on-fg" bg_pane)
-  left_icon_padding_left=$(get_tmux_option "@kanagawa-left-icon-padding-left" 1)
-  left_icon_padding_right=$(get_tmux_option "@kanagawa-left-icon-padding-right" 1)
-  left_icon_margin_right=$(get_tmux_option "@kanagawa-left-icon-margin-right" 1)
-  show_left_icon_padding=$(get_tmux_option "@kanagawa-left-icon-padding" 1)
-  show_military=$(get_tmux_option "@kanagawa-military-time" false)
-  timezone=$(get_tmux_option "@kanagawa-set-timezone" "")
-  show_timezone=$(get_tmux_option "@kanagawa-show-timezone" true)
-  show_left_sep=$(get_tmux_option "@kanagawa-show-left-sep" )
-  show_right_sep=$(get_tmux_option "@kanagawa-show-right-sep" )
-  show_border_contrast=$(get_tmux_option "@kanagawa-border-contrast" false)
-  show_day_month=$(get_tmux_option "@kanagawa-day-month" false)
-  show_refresh=$(get_tmux_option "@kanagawa-refresh-rate" 5)
-  show_synchronize_panes_label=$(get_tmux_option "@kanagawa-synchronize-panes-label" "Sync")
-  time_format=$(get_tmux_option "@kanagawa-time-format" "")
-  show_ssh_session_port=$(get_tmux_option "@kanagawa-show-ssh-session-port" false)
-  IFS=' ' read -r -a plugins <<<$(get_tmux_option "@kanagawa-plugins" "battery network weather")
-  show_empty_plugins=$(get_tmux_option "@kanagawa-show-empty-plugins" true)
+  left_icon=$(get_tmux_option "@ukiyo-left-icon" session)
+  left_icon_bg=$(get_tmux_option "@ukiyo-left-icon-bg" accent)
+  left_icon_fg=$(get_tmux_option "@ukiyo-left-icon-fg" bg_pane)
+  left_icon_prefix_bg=$(get_tmux_option "@ukiyo-left-icon-prefix-on-bg" alert)
+  left_icon_prefix_fg=$(get_tmux_option "@ukiyo-left-icon-prefix-on-fg" bg_pane)
+  left_icon_padding_left=$(get_tmux_option "@ukiyo-left-icon-padding-left" 1)
+  left_icon_padding_right=$(get_tmux_option "@ukiyo-left-icon-padding-right" 1)
+  left_icon_margin_right=$(get_tmux_option "@ukiyo-left-icon-margin-right" 1)
+  show_left_icon_padding=$(get_tmux_option "@ukiyo-left-icon-padding" 1)
+  show_military=$(get_tmux_option "@ukiyo-military-time" false)
+  timezone=$(get_tmux_option "@ukiyo-set-timezone" "")
+  show_timezone=$(get_tmux_option "@ukiyo-show-timezone" true)
+  show_left_sep=$(get_tmux_option "@ukiyo-show-left-sep" )
+  show_right_sep=$(get_tmux_option "@ukiyo-show-right-sep" )
+  show_border_contrast=$(get_tmux_option "@ukiyo-border-contrast" false)
+  show_day_month=$(get_tmux_option "@ukiyo-day-month" false)
+  show_refresh=$(get_tmux_option "@ukiyo-refresh-rate" 5)
+  show_synchronize_panes_label=$(get_tmux_option "@ukiyo-synchronize-panes-label" "Sync")
+  time_format=$(get_tmux_option "@ukiyo-time-format" "")
+  show_ssh_session_port=$(get_tmux_option "@ukiyo-show-ssh-session-port" false)
+  IFS=' ' read -r -a plugins <<<$(get_tmux_option "@ukiyo-plugins" "battery network weather")
+  show_empty_plugins=$(get_tmux_option "@ukiyo-show-empty-plugins" true)
 
   # Handle left icon configuration
   case $left_icon in
@@ -191,7 +194,7 @@ main() {
     if case $plugin in custom:*) true ;; *) false ;; esac then
       script=${plugin#"custom:"}
       if [[ -x "${current_dir}/${script}" ]]; then
-        IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-custom-plugin-colors" "info bg_pane")
+        IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-custom-plugin-colors" "info bg_pane")
         script="#($current_dir/${script})"
       else
         colors[0]="error"
@@ -200,104 +203,104 @@ main() {
       fi
 
     elif [ $plugin = "cwd" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cwd-colors" "bg_pane text")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-cwd-colors" "bg_pane text")
       tmux set-option -g status-right-length 250
       script="#($current_dir/cwd.sh)"
 
     elif [ $plugin = "fossil" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-fossil-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-fossil-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/fossil.sh)"
 
     elif [ $plugin = "git" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-git-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-git-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/git.sh)"
 
     elif [ $plugin = "hg" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-hg-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-hg-colors" "accent bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/hg.sh)"
 
     elif [ $plugin = "battery" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-battery-colors" "muted bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-battery-colors" "muted bg_pane")
       script="#($current_dir/battery.sh)"
 
     elif [ $plugin = "gpu-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-usage-colors" "muted bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-gpu-usage-colors" "muted bg_pane")
       script="#($current_dir/gpu_usage.sh)"
 
     elif [ $plugin = "gpu-ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-ram-usage-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-gpu-ram-usage-colors" "info bg_pane")
       script="#($current_dir/gpu_ram_info.sh)"
 
     elif [ $plugin = "gpu-power-draw" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-gpu-power-draw-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-gpu-power-draw-colors" "accent bg_pane")
       script="#($current_dir/gpu_power.sh)"
 
     elif [ $plugin = "cpu-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cpu-usage-colors" "notice bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-cpu-usage-colors" "notice bg_pane")
       script="#($current_dir/cpu_info.sh)"
 
     elif [ $plugin = "ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ram-usage-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-ram-usage-colors" "info bg_pane")
       script="#($current_dir/ram_info.sh)"
 
     elif [ $plugin = "tmux-ram-usage" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-tmux-ram-usage-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-tmux-ram-usage-colors" "info bg_pane")
       script="#($current_dir/tmux_ram_info.sh)"
 
     elif [ $plugin = "network" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-network-colors" "info bg_pane")
       script="#($current_dir/network.sh)"
 
     elif [ $plugin = "network-bandwidth" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-bandwidth-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-network-bandwidth-colors" "info bg_pane")
       tmux set-option -g status-right-length 250
       script="#($current_dir/network_bandwidth.sh)"
 
     elif [ $plugin = "network-ping" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-ping-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-network-ping-colors" "info bg_pane")
       script="#($current_dir/network_ping.sh)"
 
     elif [ $plugin = "network-vpn" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-network-vpn-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-network-vpn-colors" "info bg_pane")
       script="#($current_dir/network_vpn.sh)"
 
     elif [ $plugin = "attached-clients" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-attached-clients-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-attached-clients-colors" "info bg_pane")
       script="#($current_dir/attached_clients.sh)"
 
     elif [ $plugin = "mpc" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-mpc-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-mpc-colors" "accent bg_pane")
       script="#($current_dir/mpc.sh)"
 
     elif [ $plugin = "spotify-tui" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-spotify-tui-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-spotify-tui-colors" "accent bg_pane")
       script="#($current_dir/spotify-tui.sh)"
 
     elif [ $plugin = "playerctl" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-playerctl-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-playerctl-colors" "accent bg_pane")
       script="#($current_dir/playerctl.sh)"
 
     elif [ $plugin = "kubernetes-context" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-kubernetes-context-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-kubernetes-context-colors" "info bg_pane")
       script="#($current_dir/kubernetes_context.sh $eks_hide_arn $eks_extract_account $hide_kubernetes_user $show_kubernetes_context_label)"
 
     elif [ $plugin = "terraform" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-terraform-colors" "highlight bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-terraform-colors" "highlight bg_pane")
       script="#($current_dir/terraform.sh $terraform_label)"
 
     elif [ $plugin = "continuum" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-continuum-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-continuum-colors" "info bg_pane")
       script="#($current_dir/continuum.sh)"
 
     elif [ $plugin = "weather" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-weather-colors" "notice bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-weather-colors" "notice bg_pane")
       script="#($current_dir/weather_wrapper.sh $show_fahrenheit $show_location '$fixed_location')"
 
     elif [ $plugin = "time" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-time-colors" "selection text")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-time-colors" "selection text")
       if [ -n "$time_format" ]; then
         script=${time_format}
       else
@@ -312,11 +315,11 @@ main() {
         fi
       fi
     elif [ $plugin = "synchronize-panes" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-synchronize-panes-colors" "info bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-synchronize-panes-colors" "info bg_pane")
       script="#($current_dir/synchronize_panes.sh $show_synchronize_panes_label)"
 
     elif [ $plugin = "ssh-session" ]; then
-      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-ssh-session-colors" "accent bg_pane")
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-ssh-session-colors" "accent bg_pane")
       script="#($current_dir/ssh_session.sh $show_ssh_session_port)"
 
     else

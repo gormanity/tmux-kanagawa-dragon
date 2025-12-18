@@ -1,6 +1,6 @@
-# Kanagawa for [tmux](https://github.com/tmux/tmux/wiki)
+# Ukiyo for [tmux](https://github.com/tmux/tmux/wiki)
 
-Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim) and [Tokyo Night](https://github.com/folke/tokyonight.nvim) color schemes.
+Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim), [Tokyo Night](https://github.com/folke/tokyonight.nvim), and [Catppuccin](https://github.com/catppuccin/catppuccin) color schemes.
 
 Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
@@ -10,36 +10,42 @@ Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
 To activate the theme add the following line to your `.tmux.conf`.
 
-    set -g @plugin 'Nybkox/tmux-kanagawa'
+    set -g @plugin 'Nybkox/tmux-ukiyo'
 
-For advanced instructions look at [INSTALL.md](https://github.com/Nybkox/tmux-kanagawa/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux). Just replace all `dracula` occurrences with `kanagawa`.
+For advanced instructions look at [INSTALL.md](https://github.com/Nybkox/tmux-ukiyo/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux). Just replace all `dracula` occurrences with `ukiyo`.
 
 ## Configuration
 
 Configuration and options can be found at [draculatheme.com/tmux](https://draculatheme.com/tmux).
-Just replace all `dracula` occurrences with `kanagawa`.
+Just replace all `dracula` occurrences with `ukiyo`.
 
-Select a theme using `@kanagawa-theme` with format `theme/variant`. Press prefix+T for interactive menu.
+Select a theme using `@ukiyo-theme` with format `theme/variant`. Press prefix+T for interactive menu.
 
 ```bash
 # Kanagawa variants
-set -g @kanagawa-theme "kanagawa/wave"    # default dark
-set -g @kanagawa-theme "kanagawa/dragon"  # darker
-set -g @kanagawa-theme "kanagawa/lotus"   # light
+set -g @ukiyo-theme "kanagawa/wave"    # default dark
+set -g @ukiyo-theme "kanagawa/dragon"  # darker
+set -g @ukiyo-theme "kanagawa/lotus"   # light
 
 # Tokyo Night variants
-set -g @kanagawa-theme "tokyonight/moon"   # default
-set -g @kanagawa-theme "tokyonight/storm"
-set -g @kanagawa-theme "tokyonight/night"  # darker
+set -g @ukiyo-theme "tokyonight/moon"   # default
+set -g @ukiyo-theme "tokyonight/storm"
+set -g @ukiyo-theme "tokyonight/night"  # darker
+
+# Catppuccin variants
+set -g @ukiyo-theme "catppuccin/mocha"      # default dark
+set -g @ukiyo-theme "catppuccin/macchiato"  # medium dark
+set -g @ukiyo-theme "catppuccin/frappe"     # muted dark
+set -g @ukiyo-theme "catppuccin/latte"      # light
 
 # Legacy format still works
-set -g @kanagawa-theme "wave"  # same as kanagawa/wave
+set -g @ukiyo-theme "wave"  # same as kanagawa/wave
 ```
 
 If you want to preserve your emulator background / foreground for window:
 
 ```bash
-set -g @kanagawa-ignore-window-colors true
+set -g @ukiyo-ignore-window-colors true
 ```
 
 ### Kanagawa
@@ -64,20 +70,20 @@ set -g @kanagawa-ignore-window-colors true
 
 ### Custom Colors
 
-Override any semantic color via `@kanagawa-color-<name>`. Accepts hex values or color variable names from the palette.
+Override any semantic color via `@ukiyo-color-<name>`. Accepts hex values or color variable names from the palette.
 
 ```bash
 # Override with hex colors
-set -g @kanagawa-color-accent "#00ff00"
-set -g @kanagawa-color-bg-bar "#1a1a2e"
+set -g @ukiyo-color-accent "#00ff00"
+set -g @ukiyo-color-bg-bar "#1a1a2e"
 
 # Or use palette color names
-set -g @kanagawa-color-accent "spring_green"
-set -g @kanagawa-color-alert "samurai_red"
+set -g @ukiyo-color-accent "spring_green"
+set -g @ukiyo-color-alert "samurai_red"
 
 # Mix theme colors (e.g., use dragon colors in wave theme)
-set -g @kanagawa-theme "wave"
-set -g @kanagawa-color-bg-bar "dragon_black_4"
+set -g @ukiyo-theme "wave"
+set -g @ukiyo-color-bg-bar "dragon_black_4"
 ```
 
 **Available semantic colors:**

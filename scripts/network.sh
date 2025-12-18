@@ -6,9 +6,9 @@ current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $current_dir/utils.sh
 
 HOSTS="google.com github.com example.com"
-network_interface=$(get_tmux_option "@kanagawa-network-bandwidth" "en0")
-wifi_label=$(get_tmux_option "@kanagawa-network-wifi-label" "")
-ethernet_label=$(get_tmux_option "@kanagawa-network-ethernet-label" "Ethernet")
+network_interface=$(get_tmux_option "@ukiyo-network-bandwidth" "en0")
+wifi_label=$(get_tmux_option "@ukiyo-network-wifi-label" "")
+ethernet_label=$(get_tmux_option "@ukiyo-network-ethernet-label" "Ethernet")
 
 get_ssid() {
   # Check OS

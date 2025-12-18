@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-tmux-kanagawa is a multi-theme tmux status bar plugin supporting Kanagawa and Tokyo Night color schemes. Forked from dracula/tmux.
+tmux-ukiyo is a multi-theme tmux status bar plugin supporting Kanagawa, Tokyo Night, and Catppuccin color schemes. Forked from dracula/tmux.
 
 ## Architecture
 
 ### Entry Point
-- `kanagawa.tmux` - Main entry point, sources `scripts/kanagawa.sh`
+- `ukiyo.tmux` - Main entry point, sources `scripts/ukiyo.sh`
 
 ### Theme System (themes/)
 ```
@@ -20,15 +20,21 @@ themes/
 │   ├── wave.sh            # Wave variant (default dark)
 │   ├── dragon.sh          # Dragon variant (darker)
 │   └── lotus.sh           # Lotus variant (light)
-└── tokyonight/
+├── tokyonight/
+│   ├── palette.sh         # Raw color definitions
+│   ├── moon.sh            # Moon variant (default)
+│   ├── storm.sh           # Storm variant
+│   └── night.sh           # Night variant (darker)
+└── catppuccin/
     ├── palette.sh         # Raw color definitions
-    ├── moon.sh            # Moon variant (default)
-    ├── storm.sh           # Storm variant
-    └── night.sh           # Night variant (darker)
+    ├── mocha.sh           # Mocha variant (default dark)
+    ├── macchiato.sh       # Macchiato variant (medium dark)
+    ├── frappe.sh          # Frappé variant (muted dark)
+    └── latte.sh           # Latte variant (light)
 ```
 
 ### Core Scripts (scripts/)
-- `kanagawa.sh` - Main theme logic, plugin loading, status bar configuration
+- `ukiyo.sh` - Main theme logic, plugin loading, status bar configuration
 - `theme.sh` - Color override support (`override_theme_colors`)
 - `utils.sh` - Shared utilities (`get_tmux_option`, `normalize_percent_len`, `installed`)
 - `state.sh` - State management for runtime option overrides
@@ -52,7 +58,7 @@ Interactive tmux menus accessible via `prefix + T`:
 ## Color System
 
 ### Theme Loading Flow
-1. `kanagawa.sh` parses `@kanagawa-theme` option (format: `theme/variant`)
+1. `ukiyo.sh` parses `@ukiyo-theme` option (format: `theme/variant`)
 2. `loader.sh` sources `themes/<theme>/palette.sh` (raw colors)
 3. `loader.sh` sources `themes/<theme>/<variant>.sh` (semantic mapping)
 4. `theme.sh` applies user color overrides via `override_theme_colors()`
@@ -78,19 +84,19 @@ Legacy color names (`white`, `gray`, `dark_gray`, etc.) are aliased for backward
 
 Theme selection:
 ```bash
-set -g @kanagawa-theme "tokyonight/moon"  # theme/variant format
-set -g @kanagawa-theme "wave"              # legacy format (kanagawa/wave)
+set -g @ukiyo-theme "tokyonight/moon"  # theme/variant format
+set -g @ukiyo-theme "wave"              # legacy format (kanagawa/wave)
 ```
 
 Color overrides:
 ```bash
-set -g @kanagawa-color-accent "#00ff00"    # hex value
-set -g @kanagawa-color-bg-bar "sumi_ink_4" # palette variable name
+set -g @ukiyo-color-accent "#00ff00"    # hex value
+set -g @ukiyo-color-bg-bar "sumi_ink_4" # palette variable name
 ```
 
 Plugin colors:
 ```bash
-set -g @kanagawa-[plugin-name]-colors "[semantic1] [semantic2]"
+set -g @ukiyo-[plugin-name]-colors "[semantic1] [semantic2]"
 ```
 
 ## Adding a New Theme
@@ -103,10 +109,10 @@ set -g @kanagawa-[plugin-name]-colors "[semantic1] [semantic2]"
 ## Adding a New Plugin
 
 1. Create `scripts/your_plugin.sh` (must be executable, output text to stdout)
-2. Add handling in `scripts/kanagawa.sh` in the plugin loop:
+2. Add handling in `scripts/ukiyo.sh` in the plugin loop:
    ```bash
    elif [ $plugin = "your-plugin" ]; then
-     IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-your-plugin-colors" "info bg_pane")
+     IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-your-plugin-colors" "info bg_pane")
      script="#($current_dir/your_plugin.sh)"
    ```
 

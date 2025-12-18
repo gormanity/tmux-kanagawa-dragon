@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-STATE_FILE="$ROOT_DIR/data/.tmux-kanagawa-state"
+STATE_FILE="$ROOT_DIR/data/.tmux-ukiyo-state"
 
 read_option_from_state() {
   if [ ! -f "$STATE_FILE" ]; then

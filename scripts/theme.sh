@@ -4,7 +4,7 @@ override_theme_colors() {
   local semantic_names="text bg_bar bg_pane highlight selection info accent notice error muted alert"
 
   for name in $semantic_names; do
-    local option_name="@kanagawa-color-${name//_/-}"
+    local option_name="@ukiyo-color-${name//_/-}"
     local custom_value=$(get_tmux_option "$option_name" "")
 
     if [ -n "$custom_value" ]; then

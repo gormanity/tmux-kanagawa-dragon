@@ -3,13 +3,13 @@
 export LC_ALL=en_US.UTF-8
 
 # configuration
-# @kanagawa-continuum-mode default (countdown|time|alert|interval)
-# @kanagawa-continuum-time-threshold 15
+# @ukiyo-continuum-mode default (countdown|time|alert|interval)
+# @ukiyo-continuum-time-threshold 15
 
-alert_mode="@kanagawa-continuum-mode"
-time_threshold="@kanagawa-continuum-time-threshold"
+alert_mode="@ukiyo-continuum-mode"
+time_threshold="@ukiyo-continuum-time-threshold"
 warn_threshold=360
-first_save="@kanagawa-continuum-first-save"
+first_save="@ukiyo-continuum-first-save"
 
 # tmux-resurrect and tmux-continuum options
 if [ -d "$HOME/.tmux/resurrect" ]; then

@@ -34,7 +34,7 @@ get_gpu() {
 
 main() {
   # storing the refresh rate in the variable RATE, default is 5
-  RATE=$(get_tmux_option "@kanagawa-refresh-rate" 5)
+  RATE=$(get_tmux_option "@ukiyo-refresh-rate" 5)
   name="GPU"
 
   if installed "glxinfo"; then
@@ -42,7 +42,7 @@ main() {
     name="GPU ($type)"
   fi
 
-  gpu_label=$(get_tmux_option "@kanagawa-gpu-usage-label" "$name")
+  gpu_label=$(get_tmux_option "@ukiyo-gpu-usage-label" "$name")
   gpu_usage=$(get_gpu)
 
   echo "$gpu_label $gpu_usage"

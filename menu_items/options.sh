@@ -30,11 +30,11 @@ get_option_title() {
 render() {
   tmux display-menu -T "#[align=centre fg=green]Options" -x R -y P \
     "$(get_option_title show-powerline)" A "run -b 'source $ROOT_DIR/scripts/actions.sh toggle_option show-powerline; source $CURRENT_FILE'" \
-    "$(get_option_title show-fahrenheit)" B "run -b 'source #{@kanagawa-root}/scripts/actions.sh toggle_option show-fahrenheit; tmux display-message \"Weather will be updated after next fetch.\"; source $CURRENT_FILE'" \
-    "$(get_option_title military-time)" C "run -b 'source #{@kanagawa-root}/scripts/actions.sh toggle_option military-time; source $CURRENT_FILE'" \
-    "$(get_option_title show-flags)" D "run -b 'source #{@kanagawa-root}/scripts/actions.sh toggle_option show-flags; source $CURRENT_FILE'" \
+    "$(get_option_title show-fahrenheit)" B "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_option show-fahrenheit; tmux display-message \"Weather will be updated after next fetch.\"; source $CURRENT_FILE'" \
+    "$(get_option_title military-time)" C "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_option military-time; source $CURRENT_FILE'" \
+    "$(get_option_title show-flags)" D "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_option show-flags; source $CURRENT_FILE'" \
     "" \
-    "<-- Back" b "run -b 'source #{@kanagawa-root}/menu_items/main.sh'" \
+    "<-- Back" b "run -b 'source #{@ukiyo-root}/menu_items/main.sh'" \
     "Close menu" q ""
 }
 

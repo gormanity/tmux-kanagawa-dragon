@@ -11,9 +11,9 @@ set_state_and_tmux_option() {
   local option=$1
   local value=$2
 
-  tmux set-environment -g "@kanagawa-$option" "$value"
-  write_option_to_state "@kanagawa-$option" "$value"
-  source "$CURRENT_DIR/kanagawa.sh"
+  tmux set-environment -g "@ukiyo-$option" "$value"
+  write_option_to_state "@ukiyo-$option" "$value"
+  source "$CURRENT_DIR/ukiyo.sh"
 }
 
 toggle_option() {
@@ -28,12 +28,12 @@ toggle_option() {
     set_state_and_tmux_option "$option" true
   fi
 
-  source "$CURRENT_DIR/kanagawa.sh"
+  source "$CURRENT_DIR/ukiyo.sh"
 }
 
 toggle_plugin() {
   local plugin=$1
-  local active_plugins=$(get_tmux_option "@kanagawa-plugins" "")
+  local active_plugins=$(get_tmux_option "@ukiyo-plugins" "")
 
   if [[ $active_plugins == *"$plugin"* ]]; then
     # TODO: trim redundant spaces
@@ -43,7 +43,7 @@ toggle_plugin() {
   fi
 
   set_state_and_tmux_option "plugins" "$new_active_plugins"
-  source "$CURRENT_DIR/kanagawa.sh"
+  source "$CURRENT_DIR/ukiyo.sh"
 }
 
 if [ "$1" = "set_state_and_tmux_option" ]; then

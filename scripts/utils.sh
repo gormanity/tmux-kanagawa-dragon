@@ -3,6 +3,18 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$CURRENT_DIR/state.sh"
 
+# Backward compatibility: migrate @kanagawa-* options to @ukiyo-*
+migrate_legacy_options() {
+  local legacy_opts=$(tmux show-options -g 2>/dev/null | grep "^@kanagawa-" | cut -d' ' -f1)
+  for opt in $legacy_opts; do
+    local new_opt="${opt/@kanagawa-/@ukiyo-}"
+    local val=$(tmux show-option -gqv "$opt")
+    if [ -n "$val" ]; then
+      tmux set-option -gq "$new_opt" "$val"
+    fi
+  done
+}
+
 get_tmux_option() {
   local option=$1
   local default_value=$2

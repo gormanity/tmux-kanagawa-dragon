@@ -17,7 +17,7 @@ mark_if_active() {
 }
 
 render() {
-  local current_theme=$(get_tmux_option "@kanagawa-theme" "wave")
+  local current_theme=$(get_tmux_option "@ukiyo-theme" "wave")
 
   # Normalize legacy values
   case "$current_theme" in
@@ -45,22 +45,22 @@ render() {
   tmux display-menu -T "#[align=centre fg=green]Themes" -x R -y P \
     "" \
     "#[align=centre]─── Kanagawa ───" "" "" \
-    "$k_wave" 1 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/wave'" \
-    "$k_dragon" 2 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/dragon'" \
-    "$k_lotus" 3 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/lotus'" \
+    "$k_wave" 1 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/wave'" \
+    "$k_dragon" 2 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/dragon'" \
+    "$k_lotus" 3 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme kanagawa/lotus'" \
     "" \
     "#[align=centre]─── Tokyo Night ───" "" "" \
-    "$t_moon" 4 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/moon'" \
-    "$t_storm" 5 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/storm'" \
-    "$t_night" 6 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/night'" \
+    "$t_moon" 4 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/moon'" \
+    "$t_storm" 5 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/storm'" \
+    "$t_night" 6 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme tokyonight/night'" \
     "" \
     "#[align=centre]─── Catppuccin ───" "" "" \
-    "$c_mocha" 7 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/mocha'" \
-    "$c_macchiato" 8 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/macchiato'" \
-    "$c_frappe" 9 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/frappe'" \
-    "$c_latte" 0 "run -b '#{@kanagawa-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/latte'" \
+    "$c_mocha" 7 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/mocha'" \
+    "$c_macchiato" 8 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/macchiato'" \
+    "$c_frappe" 9 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/frappe'" \
+    "$c_latte" 0 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/latte'" \
     "" \
-    "<-- Back" b "run -b 'source #{@kanagawa-root}/menu_items/main.sh'" \
+    "<-- Back" b "run -b 'source #{@ukiyo-root}/menu_items/main.sh'" \
     "Close menu" q ""
 }
 

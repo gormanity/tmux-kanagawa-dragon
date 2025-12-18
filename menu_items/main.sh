@@ -7,7 +7,7 @@ source "$ROOT_DIR/scripts/utils.sh"
 
 get_plugin_title() {
   local plugin=$1
-  local active_plugins=$(get_tmux_option "@kanagawa-plugins" "")
+  local active_plugins=$(get_tmux_option "@ukiyo-plugins" "")
   if [[ $active_plugins == *"$plugin"* ]]; then
     echo "Hide $plugin"
   else
@@ -19,9 +19,9 @@ render() {
   tmux display-menu -T "#[align=centre fg=green]Main" -x R -y P \
     "" \
     "" \
-    "Colors" 1 "run -b 'source #{@kanagawa-root}/menu_items/colors.sh" \
-    "Plugins" 2 "run -b 'source #{@kanagawa-root}/menu_items/plugins.sh" \
-    "Options" 3 "run -b 'source #{@kanagawa-root}/menu_items/options.sh" \
+    "Colors" 1 "run -b 'source #{@ukiyo-root}/menu_items/colors.sh" \
+    "Plugins" 2 "run -b 'source #{@ukiyo-root}/menu_items/plugins.sh" \
+    "Options" 3 "run -b 'source #{@ukiyo-root}/menu_items/options.sh" \
     "" \
     "Close menu" q ""
 }

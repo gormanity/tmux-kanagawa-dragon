@@ -43,7 +43,7 @@ fi
 
 main() {
   # storing the refresh rate in the variable RATE, default is 5
-  RATE=$(get_tmux_option "@kanagawa-refresh-rate" 5)
+  RATE=$(get_tmux_option "@ukiyo-refresh-rate" 5)
   OUTPUT_STRING=""
   if [ ! -z "$current_account_id" ]; then
     OUTPUT_STRING="${current_account_id}/"

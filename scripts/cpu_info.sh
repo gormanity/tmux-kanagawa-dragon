@@ -49,9 +49,9 @@ get_load() {
 
 main() {
   # storing the refresh rate in the variable RATE, default is 5
-  RATE=$(get_tmux_option "@kanagawa-refresh-rate" 5)
-  cpu_load=$(get_tmux_option "@kanagawa-cpu-display-load" false)
-  cpu_label=$(get_tmux_option "@kanagawa-cpu-usage-label" "CPU")
+  RATE=$(get_tmux_option "@ukiyo-refresh-rate" 5)
+  cpu_load=$(get_tmux_option "@ukiyo-cpu-display-load" false)
+  cpu_label=$(get_tmux_option "@ukiyo-cpu-usage-label" "CPU")
   if [ "$cpu_load" = true ]; then
     echo "$cpu_label $(get_load)"
   else

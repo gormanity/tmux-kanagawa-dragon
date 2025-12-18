@@ -143,17 +143,17 @@ battery_status() {
 }
 
 main() {
-  bat_label=$(get_tmux_option "@kanagawa-battery-label" "♥")
+  bat_label=$(get_tmux_option "@ukiyo-battery-label" "♥")
   if [ "$bat_label" == false ]; then
     bat_label=""
   fi
 
-  no_bat_label=$(get_tmux_option "@kanagawa-no-battery-label" "AC")
+  no_bat_label=$(get_tmux_option "@ukiyo-no-battery-label" "AC")
   if [ "$no_bat_label" == false ]; then
     no_bat_label=""
   fi
 
-  show_bat_label=$(get_tmux_option "@kanagawa-show-battery-status" false)
+  show_bat_label=$(get_tmux_option "@ukiyo-show-battery-status" false)
   if $show_bat_label; then
     bat_stat=$(battery_status)
   else
