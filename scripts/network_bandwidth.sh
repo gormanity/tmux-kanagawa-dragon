@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$current_dir/utils.sh"
+
 # INTERVAL is equal to 1s because we want to express the bandwidth in sec
 readonly INTERVAL=1
 
@@ -96,6 +99,8 @@ main() {
   network_name=""
   show_interface="$(tmux show-option -gqv "@ukiyo-network-bandwidth-show-interface")"
   interval_update="$(tmux show-option -gqv "@ukiyo-network-bandwidth-interval")"
+  download_label=$(get_tmux_option "@ukiyo-network-bandwidth-download-label" "↓ ")
+  upload_label=$(get_tmux_option "@ukiyo-network-bandwidth-upload-label" "↑ ")
 
   if [[ -z $interval_update ]]; then
     interval_update=0
@@ -110,7 +115,7 @@ main() {
     IFS=" " read -ra bandwidth <<<"$(get_bandwidth "$network_name")"
 
     if [[ $show_interface == "true" ]]; then echo -n "[$network_name] "; fi
-    echo "↓ $(bandwidth_to_unit "${bandwidth[$DOWNLOAD]}") • ↑ $(bandwidth_to_unit "${bandwidth[$UPLOAD]}")"
+    echo "$download_label$(bandwidth_to_unit "${bandwidth[$DOWNLOAD]}") • $upload_label$(bandwidth_to_unit "${bandwidth[$UPLOAD]}")"
 
     ((counter = counter - 1))
     sleep "$interval_update"
