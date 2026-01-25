@@ -270,6 +270,10 @@ main() {
       IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-network-vpn-colors" "info bg_pane")
       script="#($current_dir/network_vpn.sh)"
 
+    elif [ $plugin = "disk-usage" ]; then
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-disk-usage-colors" "info bg_pane")
+      script="#($current_dir/disk_usage.sh)"
+
     elif [ $plugin = "attached-clients" ]; then
       IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-attached-clients-colors" "info bg_pane")
       script="#($current_dir/attached_clients.sh)"
