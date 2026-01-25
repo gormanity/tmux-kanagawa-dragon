@@ -40,7 +40,6 @@ get_ratio() {
     free_mem=$(((mem_inactive + mem_unused + mem_cache) / 1024 / 1024))
     total_mem=$(($(sysctl -n hw.physmem) / 1024 / 1024))
     used_mem=$((total_mem - free_mem))
-    echo $used_mem
     if ((used_mem < 1024)); then
       echo "${used_mem}MB/$total_mem"
     else
