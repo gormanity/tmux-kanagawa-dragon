@@ -12,7 +12,7 @@ get_ratio() {
     total="$(free -h | awk 'NR==2 {print $2}')"
     formated="${usage}/${total}"
 
-    echo "${formated//i/B}"
+    echo "${formated//i/iB}"
     ;;
 
   Darwin)
@@ -21,12 +21,12 @@ get_ratio() {
     # System Profiler performs an activation lock check, which can result in
     # time outs or a lagged response. (~10 seconds)
     # total_mem=$(system_profiler SPHardwareDataType | grep "Memory:" | awk '{print $2 $3}')
-    total_mem=$(sysctl -n hw.memsize | awk '{print $0/1024/1024/1024 " GB"}')
+    total_mem=$(sysctl -n hw.memsize | awk '{print $0/1024/1024/1024 " GiB"}')
     if ((used_mem < 1024)); then
-      echo "${used_mem}MB/$total_mem"
+      echo "${used_mem}MiB/$total_mem"
     else
       memory=$((used_mem / 1024))
-      echo "${memory}GB/$total_mem"
+      echo "${memory}GiB/$total_mem"
     fi
     ;;
 
@@ -41,10 +41,10 @@ get_ratio() {
     total_mem=$(($(sysctl -n hw.physmem) / 1024 / 1024))
     used_mem=$((total_mem - free_mem))
     if ((used_mem < 1024)); then
-      echo "${used_mem}MB/$total_mem"
+      echo "${used_mem}MiB/$total_mem"
     else
       memory=$((used_mem / 1024))
-      echo "${memory}GB/$total_mem"
+      echo "${memory}GiB/$total_mem"
     fi
     ;;
 
