@@ -196,6 +196,9 @@ main() {
       if [[ -x "${current_dir}/${script}" ]]; then
         IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-custom-plugin-colors" "info bg_pane")
         script="#($current_dir/${script})"
+      elif [[ -x "${script}" ]]; then
+        IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-custom-plugin-colors" "info bg_pane")
+        script="#(${script})"
       else
         colors[0]="error"
         colors[1]="bg_pane"
