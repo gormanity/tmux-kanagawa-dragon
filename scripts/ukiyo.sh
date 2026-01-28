@@ -24,15 +24,15 @@ main() {
   elif [ -n "$theme_option" ]; then
     # Check if it's a known variant of kanagawa (backward compat)
     case "$theme_option" in
-      wave|dragon|lotus)
-        theme="kanagawa"
-        variant="$theme_option"
-        ;;
-      *)
-        # Assume it's a theme name, use default variant
-        theme="$theme_option"
-        variant=$(get_default_variant "$theme")
-        ;;
+    wave | dragon | lotus)
+      theme="kanagawa"
+      variant="$theme_option"
+      ;;
+    *)
+      # Assume it's a theme name, use default variant
+      theme="$theme_option"
+      variant=$(get_default_variant "$theme")
+      ;;
     esac
   else
     # Default to kanagawa/wave
@@ -321,6 +321,10 @@ main() {
     elif [ $plugin = "ssh-session" ]; then
       IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-ssh-session-colors" "accent bg_pane")
       script="#($current_dir/ssh_session.sh $show_ssh_session_port)"
+
+    elif [ $plugin = "openconnect" ]; then
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@ukiyo-openconnect-colors" "info bg_pane")
+      script="#($current_dir/openconnect.sh)"
 
     else
       continue

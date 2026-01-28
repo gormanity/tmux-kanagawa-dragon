@@ -204,6 +204,7 @@ For complete color lists, see [themes/kanagawa/palette.sh](./themes/kanagawa/pal
 - Current kubernetes context
 - Countdown to tmux-continuum save
 - Current working directory of tmux pane
+- OpenConnect VPN connection status
 
 ## Compatibility
 

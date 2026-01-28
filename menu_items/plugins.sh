@@ -6,7 +6,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
 
 source "$ROOT_DIR/scripts/utils.sh"
 
-available_plugins="battery cpu-usage git gpu-usage ram-usage tmux-ram-usage network network-bandwidth network-ping ssh-session attached-clients network-vpn weather time mpc spotify-tui playerctl kubernetes-context synchronize-panes"
+available_plugins="battery cpu-usage git gpu-usage ram-usage tmux-ram-usage network network-bandwidth network-ping ssh-session attached-clients network-vpn openconnect weather time mpc spotify-tui playerctl kubernetes-context synchronize-panes"
 
 get_plugin_title() {
   local plugin=$1
@@ -41,6 +41,7 @@ render() {
     "$(get_plugin_title "playerctl")" Q "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_plugin playerctl; source $CURRENT_FILE" \
     "$(get_plugin_title "kubernetes-context")" R "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_plugin kubernetes-context; source $CURRENT_FILE" \
     "$(get_plugin_title "synchronize-panes")" S "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_plugin synchronize-panes; source $CURRENT_FILE" \
+    "$(get_plugin_title "openconnect")" T "run -b 'source #{@ukiyo-root}/scripts/actions.sh toggle_plugin openconnect; source $CURRENT_FILE" \
     "" \
     "<-- Back" b "run -b 'source #{@ukiyo-root}/menu_items/main.sh" \
     "Close menu" q ""
