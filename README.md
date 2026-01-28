@@ -1,6 +1,6 @@
 # Ukiyo for [tmux](https://github.com/tmux/tmux/wiki)
 
-Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim), [Tokyo Night](https://github.com/folke/tokyonight.nvim), and [Catppuccin](https://github.com/catppuccin/catppuccin) color schemes.
+Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim), [Dracula](https://draculatheme.com/) [Tokyo Night](https://github.com/folke/tokyonight.nvim), and [Catppuccin](https://github.com/catppuccin/catppuccin) color schemes.
 
 Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
@@ -50,11 +50,11 @@ set -g @ukiyo-ignore-window-colors true
 
 ### Kanagawa
 
-| Variant | Description |
-|---------|-------------|
-| wave | Default dark theme |
-| dragon | Darker variant |
-| lotus | Light theme |
+| Variant | Description        |
+| ------- | ------------------ |
+| wave    | Default dark theme |
+| dragon  | Darker variant     |
+| lotus   | Light theme        |
 
 **Wave** ![Default Theme](./assets/themes/default.png)
 **Dragon** ![Dragon Theme](./assets/themes/dragon.png)
@@ -62,11 +62,11 @@ set -g @ukiyo-ignore-window-colors true
 
 ### Tokyo Night
 
-| Variant | Description |
-|---------|-------------|
-| moon | Default, softer colors |
-| storm | Original dark theme |
-| night | Darker backgrounds |
+| Variant | Description            |
+| ------- | ---------------------- |
+| moon    | Default, softer colors |
+| storm   | Original dark theme    |
+| night   | Darker backgrounds     |
 
 ### Custom Colors
 
@@ -88,19 +88,19 @@ set -g @ukiyo-color-bg-bar "dragon_black_4"
 
 **Available semantic colors:**
 
-| Name | Role |
-|------|------|
-| `text` | Primary text/foreground |
-| `bg-bar` | Status bar background |
-| `bg-pane` | Window/pane background |
-| `highlight` | Active element highlight |
-| `selection` | Selected/focused element |
-| `info` | Informational status |
-| `accent` | Primary accent (VCS, success) |
-| `notice` | Attention items (CPU, weather) |
-| `error` | Error states |
-| `muted` | Secondary status (battery) |
-| `alert` | Prefix/alert active state |
+| Name        | Role                           |
+| ----------- | ------------------------------ |
+| `text`      | Primary text/foreground        |
+| `bg-bar`    | Status bar background          |
+| `bg-pane`   | Window/pane background         |
+| `highlight` | Active element highlight       |
+| `selection` | Selected/focused element       |
+| `info`      | Informational status           |
+| `accent`    | Primary accent (VCS, success)  |
+| `notice`    | Attention items (CPU, weather) |
+| `error`     | Error states                   |
+| `muted`     | Secondary status (battery)     |
+| `alert`     | Prefix/alert active state      |
 
 The Kanagawa theme for tmux also supports an extended list of colors from the Kaganawa color palette. Below, you'll find a detailed list of these extra colors available.
 

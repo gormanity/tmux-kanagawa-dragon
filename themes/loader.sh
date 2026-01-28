@@ -30,9 +30,10 @@ load_theme() {
 get_default_variant() {
   local theme_name=$1
   case $theme_name in
-    kanagawa) echo "wave" ;;
-    tokyonight) echo "moon" ;;
-    catppuccin) echo "mocha" ;;
-    *) echo "default" ;;
+  kanagawa) echo "wave" ;;
+  tokyonight) echo "moon" ;;
+  catppuccin) echo "mocha" ;;
+  dracula) echo "classic" ;;
+  *) echo "default" ;;
   esac
 }

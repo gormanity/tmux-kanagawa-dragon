@@ -21,9 +21,9 @@ render() {
 
   # Normalize legacy values
   case "$current_theme" in
-    wave|dragon|lotus)
-      current_theme="kanagawa/$current_theme"
-      ;;
+  wave | dragon | lotus)
+    current_theme="kanagawa/$current_theme"
+    ;;
   esac
 
   # Kanagawa variants
@@ -42,6 +42,9 @@ render() {
   local c_frappe=$(mark_if_active "$current_theme" "catppuccin/frappe" "Frappé")
   local c_latte=$(mark_if_active "$current_theme" "catppuccin/latte" "Latte")
 
+  # Dracula variants
+  local d_classic=$(mark_if_active "$current_theme" "dracula/classic" "Classic")
+
   tmux display-menu -T "#[align=centre fg=green]Themes" -x R -y P \
     "" \
     "#[align=centre]─── Kanagawa ───" "" "" \
@@ -59,6 +62,9 @@ render() {
     "$c_macchiato" 8 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/macchiato'" \
     "$c_frappe" 9 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/frappe'" \
     "$c_latte" 0 "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme catppuccin/latte'" \
+    "" \
+    "#[align=centre]─── Dracula ───" "" "" \
+    "$d_classic" d "run -b '#{@ukiyo-root}/scripts/actions.sh set_state_and_tmux_option theme dracula/classic'" \
     "" \
     "<-- Back" b "run -b 'source #{@ukiyo-root}/menu_items/main.sh'" \
     "Close menu" q ""
