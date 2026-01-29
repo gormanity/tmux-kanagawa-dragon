@@ -189,6 +189,7 @@ For complete color lists, see [themes/kanagawa/palette.sh](./themes/kanagawa/pal
 - CPU usage (percentage or load average)
 - RAM usage (system and/or tmux server)
 - GPU usage
+- Disk usage
 - Custom status texts from external scripts
 - GPU VRAM usage
 - GPU power draw
