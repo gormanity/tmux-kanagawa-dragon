@@ -77,16 +77,25 @@ get_bandwidth() {
 
 # bandwidth_to_unit convert bytes into its highest unit and add unit symbol in sec
 bandwidth_to_unit() {
-  local size=1
+  bytes="$1"
+  fmt="$2"
+  min_divisor="$3"
+  max_divisor="$4"
+
+  local size="$min_divisor"
   for i in "${!SIZE[@]}"; do
-    if (($1 < i)); then
+    if ((i >= max_divisor)); then
+      break
+    fi
+
+    if ((bytes < i)); then
       break
     fi
 
     size="$i"
   done
 
-  result="$(awk -v a="$1" -v b="$size" 'BEGIN { printf "%.1f\n", a / b }' </dev/null)"
+  result="$(awk -v a="$1" -v b="$size" "BEGIN { printf \"$fmt\n\", a / b }" </dev/null)"
   result_with_unit="$result ${SIZE[$size]}"
   padded_result=$(printf "%11s" "$result_with_unit")
   echo "$padded_result"
@@ -101,6 +110,9 @@ main() {
   interval_update="$(tmux show-option -gqv "@ukiyo-network-bandwidth-interval")"
   download_label=$(get_tmux_option "@ukiyo-network-bandwidth-download-label" "↓ ")
   upload_label=$(get_tmux_option "@ukiyo-network-bandwidth-upload-label" "↑ ")
+  min_unit_divisor=$(get_tmux_option "@ukiyo-network-bandwidth-min-unit-divisor" "1")
+  max_unit_divisor=$(get_tmux_option "@ukiyo-network-bandwidth-max-unit-divisor" "1073741824")
+  unit_fmt=$(get_tmux_option "@ukiyo-network-bandwidth-unit-fmt" "%3.1f")
 
   if [[ -z $interval_update ]]; then
     interval_update=0
@@ -115,7 +127,10 @@ main() {
     IFS=" " read -ra bandwidth <<<"$(get_bandwidth "$network_name")"
 
     if [[ $show_interface == "true" ]]; then echo -n "[$network_name] "; fi
-    echo "$download_label$(bandwidth_to_unit "${bandwidth[$DOWNLOAD]}") • $upload_label$(bandwidth_to_unit "${bandwidth[$UPLOAD]}")"
+
+    download=$(bandwidth_to_unit "${bandwidth[$DOWNLOAD]}" "$unit_fmt" "$min_unit_divisor" "$max_unit_divisor")
+    upload=$(bandwidth_to_unit "${bandwidth[$UPLOAD]}" "$unit_fmt" "$min_unit_divisor" "$max_unit_divisor")
+    echo "$download_label$download • $upload_label$upload"
 
     ((counter = counter - 1))
     sleep "$interval_update"
