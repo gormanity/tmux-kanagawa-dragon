@@ -11,6 +11,7 @@ migrate_legacy_options() {
     local val=$(tmux show-option -gqv "$opt")
     if [ -n "$val" ]; then
       tmux set-option -gq "$new_opt" "$val"
+      tmux set-option -gu "$opt"
     fi
   done
 }
