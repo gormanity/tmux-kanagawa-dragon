@@ -11,7 +11,7 @@ set_state_and_tmux_option() {
   local option=$1
   local value=$2
 
-  tmux set-environment -g "@ukiyo-$option" "$value"
+  tmux set-option -g "@ukiyo-$option" "$value"
   write_option_to_state "@ukiyo-$option" "$value"
   source "$CURRENT_DIR/ukiyo.sh"
 }

@@ -21,7 +21,12 @@ write_option_to_state() {
   local option=$1
   local value=$2
   if grep -q "^$option" "$STATE_FILE"; then
-    sed -i "" "s|^$option.*|$option $value|" "$STATE_FILE"
+    # macOS/BSD uses -i "", Linux uses -i
+    if [[ "$(uname)" == "Darwin" ]]; then
+      sed -i "" "s|^$option.*|$option $value|" "$STATE_FILE"
+    else
+      sed -i "s|^$option.*|$option $value|" "$STATE_FILE"
+    fi
   else
     echo "$option $value" >>"$STATE_FILE"
   fi
