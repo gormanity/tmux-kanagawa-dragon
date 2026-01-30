@@ -82,9 +82,9 @@ bandwidth_to_unit() {
   min_divisor="$3"
   max_divisor="$4"
 
-  local size="$min_divisor"
+  local size="1"
   for i in "${!SIZE[@]}"; do
-    if ((i >= max_divisor)); then
+    if ((i > max_divisor)); then
       break
     fi
 
@@ -94,6 +94,7 @@ bandwidth_to_unit() {
 
     size="$i"
   done
+  size=$(( min_divisor >= size ? min_divisor : size ))
 
   result="$(awk -v a="$1" -v b="$size" "BEGIN { printf \"$fmt\n\", a / b }" </dev/null)"
   result_with_unit="$result ${SIZE[$size]}"
