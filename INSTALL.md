@@ -116,7 +116,7 @@ Switch the left smiley icon
 
 ```bash
 # it can accept `hostname` (full hostname), `session`, `shortname` (short name), `smiley`, `window`, or any character.
-set -g @ukiyo-show-left-icon session
+set -g @ukiyo-left-icon session
 ```
 
 Add padding to the left smiley icon
