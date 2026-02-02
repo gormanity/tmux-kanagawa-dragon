@@ -34,6 +34,11 @@ get_default_variant() {
   tokyonight) echo "moon" ;;
   catppuccin) echo "mocha" ;;
   dracula) echo "classic" ;;
+  nord) echo "default" ;;
+  gruvbox) echo "dark" ;;
+  rose-pine) echo "main" ;;
+  solarized) echo "dark" ;;
+  onedark) echo "dark" ;;
   *) echo "default" ;;
   esac
 }
