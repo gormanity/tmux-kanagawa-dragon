@@ -38,6 +38,30 @@ set -g @ukiyo-theme "catppuccin/macchiato"  # medium dark
 set -g @ukiyo-theme "catppuccin/frappe"     # muted dark
 set -g @ukiyo-theme "catppuccin/latte"      # light
 
+# Nord
+set -g @ukiyo-theme "nord/default"
+
+# Gruvbox variants
+set -g @ukiyo-theme "gruvbox/dark"    # Dark
+set -g @ukiyo-theme "gruvbox/light"   # Light
+
+# Rose Pine variants
+set -g @ukiyo-theme "rose-pine/main"    # Default dark
+set -g @ukiyo-theme "rose-pine/moon"   # Dark, more muted
+set -g @ukiyo-theme "rose-pine/dawn"   # Light
+
+# Solarized variants
+set -g @ukiyo-theme "solarized/dark"   # Dark
+set -g @ukiyo-theme "solarized/light"  # Light
+
+# OneDark variants
+set -g @ukiyo-theme "onedark/dark"     # Dark
+set -g @ukiyo-theme "onedark/darker"   # Darker
+set -g @ukiyo-theme "onedark/cool"     # Cool (bluer tones)
+set -g @ukiyo-theme "onedark/deep"     # Deepest background
+set -g @ukiyo-theme "onedark/warm"     # Warm tones
+set -g @ukiyo-theme "onedark/warmer"   # Warmer tones
+
 # Legacy format still works
 set -g @ukiyo-theme "wave"  # same as kanagawa/wave
 ```
@@ -48,10 +72,49 @@ If you want to preserve your emulator background / foreground for window:
 set -g @ukiyo-ignore-window-colors true
 ```
 
+### Nord
+
+| Variant | Description |
+| ------- | ----------- |
+| default | Arctic, cool blue-grey |
+
+### Gruvbox
+
+| Variant | Description |
+| ------- | ----------- |
+| dark   | Retro groove, dark theme    |
+| light  | Retro groove, light theme   |
+
+### Rose Pine
+
+| Variant | Description |
+| ------- | ----------- |
+| main   | Default dark theme    |
+| moon   | Dark, more muted       |
+| dawn   | Light mode             |
+
+### Solarized
+
+| Variant | Description |
+| ------- | ----------- |
+| dark   | Low contrast, precision colors |
+| light  | Low contrast, precision colors |
+
+### OneDark
+
+| Variant | Description |
+| ------- | ----------- |
+| dark   | Standard dark              |
+| darker | Lower contrast            |
+| cool   | Bluer tones              |
+| deep   | Deepest background        |
+| warm   | Warmer tones             |
+| warmer | Even warmer tones          |
+
 ### Kanagawa
 
-| Variant | Description        |
-| ------- | ------------------ |
+| Variant | Description |
+| ------- | ----------- |
 | wave    | Default dark theme |
 | dragon  | Darker variant     |
 | lotus   | Light theme        |
