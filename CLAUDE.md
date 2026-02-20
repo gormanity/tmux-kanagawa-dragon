@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**tmux-kanagawa-dragon** is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) theme engine. 
+**tmux-kanagawa-dragon** is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) theme engine (itself a fork of Dracula). 
 
 ### Maintenance Philosophy
 1. **Dragon-First**: The primary purpose of this fork is to provide a perfectly tuned Kanagawa Dragon experience. The default theme is `kanagawa-dragon/default`.

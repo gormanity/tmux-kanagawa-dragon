@@ -2,7 +2,7 @@
 
 A status bar theme for tmux inspired by the [Kanagawa Dragon](https://github.com/rebelot/kanagawa.nvim) color scheme.
 
-This project is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) (formerly [Dracula](https://github.com/dracula/tmux)) theme engine. It is maintained to track the latest upstream features and plugins while providing a **custom-tuned Kanagawa Dragon** experience as the core identity and default theme.
+This project is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) theme engine (itself a fork of [Dracula](https://github.com/dracula/tmux)). It is maintained to track the latest upstream features and plugins while providing a **custom-tuned Kanagawa Dragon** experience as the core identity and default theme.
 
 ![Screenshot](./screenshot.png)
 
