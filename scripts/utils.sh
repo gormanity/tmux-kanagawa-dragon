@@ -3,11 +3,12 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$CURRENT_DIR/state.sh"
 
-# Backward compatibility: migrate @kanagawa-* options to @ukiyo-*
+# Backward compatibility: migrate @kanagawa-* and @kanagawa-dragon-* options to @ukiyo-*
 migrate_legacy_options() {
-  local legacy_opts=$(tmux show-options -g 2>/dev/null | grep "^@kanagawa-" | cut -d' ' -f1)
+  local legacy_opts=$(tmux show-options -g 2>/dev/null | grep -E "^@kanagawa-|^@kanagawa-dragon-" | cut -d' ' -f1)
   for opt in $legacy_opts; do
-    local new_opt="${opt/@kanagawa-/@ukiyo-}"
+    local new_opt="${opt/@kanagawa-dragon-/@ukiyo-}"
+    new_opt="${new_opt/@kanagawa-/@ukiyo-}"
     local val=$(tmux show-option -gqv "$opt")
     if [ -n "$val" ]; then
       tmux set-option -gq "$new_opt" "$val"

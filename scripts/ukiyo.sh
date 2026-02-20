@@ -35,9 +35,9 @@ main() {
       ;;
     esac
   else
-    # Default to kanagawa/wave
-    theme="kanagawa"
-    variant="wave"
+    # Default to kanagawa-dragon (User fork default)
+    theme="kanagawa-dragon"
+    variant="default"
   fi
 
   load_theme "$theme" "$variant"

@@ -1,4 +1,4 @@
-# Ukiyo for [tmux](https://github.com/tmux/tmux/wiki)
+# Kanagawa Dragon for [tmux](https://github.com/tmux/tmux/wiki)
 
 Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim), [Dracula](https://draculatheme.com/) [Tokyo Night](https://github.com/folke/tokyonight.nvim), and [Catppuccin](https://github.com/catppuccin/catppuccin) color schemes.
 
@@ -10,9 +10,9 @@ Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
 To activate the theme add the following line to your `.tmux.conf`.
 
-    set -g @plugin 'Nybkox/tmux-ukiyo'
+    set -g @plugin 'gormanity/tmux-kanagawa-dragon'
 
-For advanced instructions look at [INSTALL.md](https://github.com/Nybkox/tmux-ukiyo/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux). Just replace all `dracula` occurrences with `ukiyo`.
+For advanced instructions look at [INSTALL.md](https://github.com/gormanity/tmux-kanagawa-dragon/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux). Just replace all `dracula` occurrences with `ukiyo`.
 
 ## Configuration
 
