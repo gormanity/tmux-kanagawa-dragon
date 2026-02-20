@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-tmux-ukiyo is a multi-theme tmux status bar plugin supporting Kanagawa, Tokyo Night, and Catppuccin color schemes. Forked from dracula/tmux.
+**tmux-kanagawa-dragon** is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) theme engine. 
+
+### Maintenance Philosophy
+1. **Dragon-First**: The primary purpose of this fork is to provide a perfectly tuned Kanagawa Dragon experience. The default theme is `kanagawa-dragon/default`.
+2. **Upstream Alignment**: Stay closely aligned with the upstream `Nybkox/tmux-ukiyo` engine to benefit from new plugins and bug fixes.
+3. **Prefix Support**: Maintain backward compatibility for `@kanagawa-dragon-` and `@kanagawa-` prefixes, migrating them to `@ukiyo-` internally via `scripts/utils.sh`.
 
 ## Architecture
 

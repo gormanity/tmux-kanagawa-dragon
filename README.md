@@ -1,10 +1,16 @@
 # Kanagawa Dragon for [tmux](https://github.com/tmux/tmux/wiki)
 
-A status bar theme for tmux inspired by the [Kanagawa Dragon](https://github.com/rebelot/kanagawa.nvim) color scheme. Focused on the deep, dark tones of the Dragon variant while providing extended support for Tokyo Night, Catppuccin, and other popular palettes.
+A status bar theme for tmux inspired by the [Kanagawa Dragon](https://github.com/rebelot/kanagawa.nvim) color scheme.
 
-Forked from [dracula/tmux](https://github.com/dracula/tmux).
+This project is a specialized fork of the [Ukiyo](https://github.com/Nybkox/tmux-ukiyo) (formerly [Dracula](https://github.com/dracula/tmux)) theme engine. It is maintained to track the latest upstream features and plugins while providing a **custom-tuned Kanagawa Dragon** experience as the core identity and default theme.
 
 ![Screenshot](./screenshot.png)
+
+## Why this fork?
+
+- **Dragon-First**: The codebase is configured to use a custom-tuned Kanagawa Dragon palette by default.
+- **Upstream Sync**: Regularly updated to include new plugins and engine improvements from the upstream project.
+- **Clean Configuration**: Uses the `@kanagawa-dragon-` prefix to maintain a consistent identity.
 
 ## Install
 
