@@ -1,6 +1,6 @@
 # Kanagawa Dragon for [tmux](https://github.com/tmux/tmux/wiki)
 
-Multi-theme tmux status bar with [Kanagawa](https://github.com/rebelot/kanagawa.nvim), [Dracula](https://draculatheme.com/) [Tokyo Night](https://github.com/folke/tokyonight.nvim), and [Catppuccin](https://github.com/catppuccin/catppuccin) color schemes.
+A status bar theme for tmux inspired by the [Kanagawa Dragon](https://github.com/rebelot/kanagawa.nvim) color scheme. Focused on the deep, dark tones of the Dragon variant while providing extended support for Tokyo Night, Catppuccin, and other popular palettes.
 
 Forked from [dracula/tmux](https://github.com/dracula/tmux).
 
@@ -12,141 +12,70 @@ To activate the theme add the following line to your `.tmux.conf`.
 
     set -g @plugin 'gormanity/tmux-kanagawa-dragon'
 
-For advanced instructions look at [INSTALL.md](https://github.com/gormanity/tmux-kanagawa-dragon/blob/master/INSTALL.md) or check official instructions of [dracula/tmux](https://draculatheme.com/tmux). Just replace all `dracula` occurrences with `ukiyo`.
+For advanced instructions look at [INSTALL.md](https://github.com/gormanity/tmux-kanagawa-dragon/blob/master/INSTALL.md).
 
 ## Configuration
 
-Configuration and options can be found at [draculatheme.com/tmux](https://draculatheme.com/tmux).
-Just replace all `dracula` occurrences with `ukiyo`.
-
-Select a theme using `@ukiyo-theme` with format `theme/variant`. Press prefix+T for interactive menu.
+The **Kanagawa Dragon** theme is active by default. You can customize the status bar using the `@kanagawa-dragon-` prefix in your `.tmux.conf`.
 
 ```bash
-# Kanagawa variants
-set -g @ukiyo-theme "kanagawa/wave"    # default dark
-set -g @ukiyo-theme "kanagawa/dragon"  # darker
-set -g @ukiyo-theme "kanagawa/lotus"   # light
-
-# Tokyo Night variants
-set -g @ukiyo-theme "tokyonight/moon"   # default
-set -g @ukiyo-theme "tokyonight/storm"
-set -g @ukiyo-theme "tokyonight/night"  # darker
-
-# Catppuccin variants
-set -g @ukiyo-theme "catppuccin/mocha"      # default dark
-set -g @ukiyo-theme "catppuccin/macchiato"  # medium dark
-set -g @ukiyo-theme "catppuccin/frappe"     # muted dark
-set -g @ukiyo-theme "catppuccin/latte"      # light
-
-# Nord
-set -g @ukiyo-theme "nord/default"
-
-# Gruvbox variants
-set -g @ukiyo-theme "gruvbox/dark"    # Dark
-set -g @ukiyo-theme "gruvbox/light"   # Light
-
-# Rose Pine variants
-set -g @ukiyo-theme "rose-pine/main"    # Default dark
-set -g @ukiyo-theme "rose-pine/moon"   # Dark, more muted
-set -g @ukiyo-theme "rose-pine/dawn"   # Light
-
-# Solarized variants
-set -g @ukiyo-theme "solarized/dark"   # Dark
-set -g @ukiyo-theme "solarized/light"  # Light
-
-# OneDark variants
-set -g @ukiyo-theme "onedark/dark"     # Dark
-set -g @ukiyo-theme "onedark/darker"   # Darker
-set -g @ukiyo-theme "onedark/cool"     # Cool (bluer tones)
-set -g @ukiyo-theme "onedark/deep"     # Deepest background
-set -g @ukiyo-theme "onedark/warm"     # Warm tones
-set -g @ukiyo-theme "onedark/warmer"   # Warmer tones
-
-# Legacy format still works
-set -g @ukiyo-theme "wave"  # same as kanagawa/wave
+# Example: Customize plugins using the fork-specific prefix
+set -g @kanagawa-dragon-plugins "cpu-usage ram-usage network"
+set -g @kanagawa-dragon-show-powerline true
 ```
+
+### Theme Variants
+
+If you wish to switch to other Kanagawa variants or supported themes, use the `@kanagawa-dragon-theme` option:
+
+```bash
+set -g @kanagawa-dragon-theme "kanagawa/dragon"  # Default
+set -g @kanagawa-dragon-theme "kanagawa/wave"    # Classic dark
+set -g @kanagawa-dragon-theme "kanagawa/lotus"   # Light
+```
+
+<details>
+<summary><strong>Technical Note: The Ukiyo Engine</strong></summary>
+
+This fork uses the "Ukiyo" engine for multi-theme support. While `@kanagawa-dragon-` is the preferred prefix for this fork, the engine also responds to `@ukiyo-` prefixes. 
+
+Available themes include: `tokyonight`, `catppuccin`, `nord`, `gruvbox`, `rose-pine`, `solarized`, and `onedark`. Use `prefix + T` to explore them interactively.
+</details>
 
 If you want to preserve your emulator background / foreground for window:
 
 ```bash
-set -g @ukiyo-ignore-window-colors true
+set -g @kanagawa-dragon-ignore-window-colors true
 ```
 
-### Nord
+### Kanagawa Variants
 
 | Variant | Description |
 | ------- | ----------- |
-| default | Arctic, cool blue-grey |
+| dragon  | Default (darker) variant |
+| wave    | Classic dark theme       |
+| lotus   | Light theme             |
 
-### Gruvbox
-
-| Variant | Description |
-| ------- | ----------- |
-| dark   | Retro groove, dark theme    |
-| light  | Retro groove, light theme   |
-
-### Rose Pine
-
-| Variant | Description |
-| ------- | ----------- |
-| main   | Default dark theme    |
-| moon   | Dark, more muted       |
-| dawn   | Light mode             |
-
-### Solarized
-
-| Variant | Description |
-| ------- | ----------- |
-| dark   | Low contrast, precision colors |
-| light  | Low contrast, precision colors |
-
-### OneDark
-
-| Variant | Description |
-| ------- | ----------- |
-| dark   | Standard dark              |
-| darker | Lower contrast            |
-| cool   | Bluer tones              |
-| deep   | Deepest background        |
-| warm   | Warmer tones             |
-| warmer | Even warmer tones          |
-
-### Kanagawa
-
-| Variant | Description |
-| ------- | ----------- |
-| wave    | Default dark theme |
-| dragon  | Darker variant     |
-| lotus   | Light theme        |
-
-**Wave** ![Default Theme](./assets/themes/default.png)
 **Dragon** ![Dragon Theme](./assets/themes/dragon.png)
+**Wave** ![Default Theme](./assets/themes/default.png)
 **Lotus** ![Lotus Theme](./assets/themes/lotus.png)
-
-### Tokyo Night
-
-| Variant | Description            |
-| ------- | ---------------------- |
-| moon    | Default, softer colors |
-| storm   | Original dark theme    |
-| night   | Darker backgrounds     |
 
 ### Custom Colors
 
-Override any semantic color via `@ukiyo-color-<name>`. Accepts hex values or color variable names from the palette.
+Override any semantic color via `@kanagawa-dragon-color-<name>`. Accepts hex values or color variable names from the palette.
 
 ```bash
 # Override with hex colors
-set -g @ukiyo-color-accent "#00ff00"
-set -g @ukiyo-color-bg-bar "#1a1a2e"
+set -g @kanagawa-dragon-color-accent "#00ff00"
+set -g @kanagawa-dragon-color-bg-bar "#1a1a2e"
 
 # Or use palette color names
-set -g @ukiyo-color-accent "spring_green"
-set -g @ukiyo-color-alert "samurai_red"
+set -g @kanagawa-dragon-color-accent "spring_green"
+set -g @kanagawa-dragon-color-alert "samurai_red"
 
 # Mix theme colors (e.g., use dragon colors in wave theme)
-set -g @ukiyo-theme "wave"
-set -g @ukiyo-color-bg-bar "dragon_black_4"
+set -g @kanagawa-dragon-theme "wave"
+set -g @kanagawa-dragon-color-bg-bar "dragon_black_4"
 ```
 
 **Available semantic colors:**
@@ -210,7 +139,7 @@ The Kanagawa theme for tmux also supports an extended list of colors from the Ka
 | Wave Aqua 2     | `#7aa89f` | ![Wave Aqua 2](./assets/colors/wave_aqua_2.svg)         |
 | Wave Blue 1     | `#223249` | ![Wave Blue 1](./assets/colors/wave_blue_1.svg)         |
 | Wave Blue 2     | `#2d4f67` | ![Wave Blue 2](./assets/colors/wave_blue_2.svg)         |
-| Wawe Red        | `#e46876` | ![Wawe Red](./assets/colors/wawe_red.svg)               |
+| Wave Red        | `#e46876` | ![Wave Red](./assets/colors/wave_red.svg)               |
 | Winter Blue     | `#252535` | ![Winter Blue](./assets/colors/winter_blue.svg)         |
 | Winter Green    | `#2b3328` | ![Winter Green](./assets/colors/winter_green.svg)       |
 | Winter Red      | `#43242b` | ![Winter Red](./assets/colors/winter_red.svg)           |
